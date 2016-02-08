@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sku:</strong>
+  <%= @product.SKU %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @product.quantity %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @product.weight %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @product.height %>
+</p>
+
+<p>
+  <strong>Width:</strong>
+  <%= @product.width %>
+</p>
+
+<p>
+  <strong>Depth:</strong>
+  <%= @product.depth %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @product.company %>
+</p>
+
+<p>
+  <strong>Cost price:</strong>
+  <%= @product.cost_price %>
+</p>
+
+<p>
+  <strong>Retail price:</strong>
+  <%= @product.retail_price %>
+</p>
+
+<p>
+  <strong>Image:</strong> <br/>
+  <%= image_tag(@product.photo, :size => "100x100", :alt => "Picture") %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

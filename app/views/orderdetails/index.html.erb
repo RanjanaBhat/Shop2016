@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Orderdetails</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order no</th>
+      <th>Is express delivery</th>
+      <th>Is customer pickup</th>
+      <th>Delivery date</th>
+      <th>Delivery slot</th>
+      <th>Carrier</th>
+      <th>Order currency</th>
+      <th>Order value</th>
+      <th>Payment collection</th>
+      <th>Special instruction</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orderdetails.each do |orderdetail| %>
+      <tr>
+        <td><%= orderdetail.order_no %></td>
+        <td><%= orderdetail.is_express_delivery %></td>
+        <td><%= orderdetail.is_customer_pickup %></td>
+        <td><%= orderdetail.delivery_date %></td>
+        <td><%= orderdetail.delivery_slot %></td>
+        <td><%= orderdetail.carrier %></td>
+        <td><%= orderdetail.order_currency %></td>
+        <td><%= orderdetail.order_value %></td>
+        <td><%= orderdetail.payment_collection %></td>
+        <td><%= orderdetail.special_instruction %></td>
+        <td><%= link_to 'Show', orderdetail %></td>
+        <td><%= link_to 'Edit', edit_orderdetail_path(orderdetail) %></td>
+        <td><%= link_to 'Destroy', orderdetail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Orderdetail', new_orderdetail_path %>

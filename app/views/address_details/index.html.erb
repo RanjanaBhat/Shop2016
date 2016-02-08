@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Address Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Line1</th>
+      <th>Line2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Postcode</th>
+      <th>Country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @address_details.each do |address_detail| %>
+      <tr>
+        <td><%= address_detail.line1 %></td>
+        <td><%= address_detail.line2 %></td>
+        <td><%= address_detail.city %></td>
+        <td><%= address_detail.state %></td>
+        <td><%= address_detail.postcode %></td>
+        <td><%= address_detail.country %></td>
+        <td><%= link_to 'Show', address_detail %></td>
+        <td><%= link_to 'Edit', edit_address_detail_path(address_detail) %></td>
+        <td><%= link_to 'Destroy', address_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Address detail', new_address_detail_path %>

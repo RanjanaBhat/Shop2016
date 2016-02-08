@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order no:</strong>
+  <%= @orderdetail.order_no %>
+</p>
+
+<p>
+  <strong>Is express delivery:</strong>
+  <%= @orderdetail.is_express_delivery %>
+</p>
+
+<p>
+  <strong>Is customer pickup:</strong>
+  <%= @orderdetail.is_customer_pickup %>
+</p>
+
+<p>
+  <strong>Delivery date:</strong>
+  <%= @orderdetail.delivery_date %>
+</p>
+
+<p>
+  <strong>Delivery slot:</strong>
+  <%= @orderdetail.delivery_slot %>
+</p>
+
+<p>
+  <strong>Carrier:</strong>
+  <%= @orderdetail.carrier %>
+</p>
+
+<p>
+  <strong>Order currency:</strong>
+  <%= @orderdetail.order_currency %>
+</p>
+
+<p>
+  <strong>Order value:</strong>
+  <%= @orderdetail.order_value %>
+</p>
+
+<p>
+  <strong>Payment collection:</strong>
+  <%= @orderdetail.payment_collection %>
+</p>
+
+<p>
+  <strong>Special instruction:</strong>
+  <%= @orderdetail.special_instruction %>
+</p>
+
+<%= link_to 'Edit', edit_orderdetail_path(@orderdetail) %> |
+<%= link_to 'Back', orderdetails_path %>

@@ -1,0 +1,57 @@
+<%= form_for(@orderdetail) do |f| %>
+  <% if @orderdetail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@orderdetail.errors.count, "error") %> prohibited this orderdetail from being saved:</h2>
+
+      <ul>
+      <% @orderdetail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :order_no %><br>
+    <%= f.number_field :order_no %>
+  </div>
+  <div class="field">
+    <%= f.label :is_express_delivery %><br>
+    <%= f.check_box :is_express_delivery %>
+  </div>
+  <div class="field">
+    <%= f.label :is_customer_pickup %><br>
+    <%= f.check_box :is_customer_pickup %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_date %><br>
+    <%= f.datetime_select :delivery_date %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_slot %><br>
+    <%= f.datetime_select :delivery_slot %>
+  </div>
+  <div class="field">
+    <%= f.label :carrier %><br>
+    <%= f.text_field :carrier %>
+  </div>
+  <div class="field">
+    <%= f.label :order_currency %><br>
+    <%= f.text_field :order_currency %>
+  </div>
+  <div class="field">
+    <%= f.label :order_value %><br>
+    <%= f.number_field :order_value %>
+  </div>
+  <div class="field">
+    <%= f.label :payment_collection %><br>
+    <%= f.text_field :payment_collection %>
+  </div>
+  <div class="field">
+    <%= f.label :special_instruction %><br>
+    <%= f.text_area :special_instruction %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
