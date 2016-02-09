@@ -1,20 +1,40 @@
-
 <p id="notice"><%= notice %></p>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+</head>
 <body>
+  <div class="tabbable tabs-left">
+    <!-- Nav tabs -->
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">About us</a></li>
+            <li><a href="#tab9" data-toggle="tab">Address</a></li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <%#= link_to products_path %>
+        <%#= render 'customer' %>
+    </div>
+    <div class="tab-pane" id="tab9">
+        <%#= render 'order' %>
+    </div>
+</div>
 <!-- Jumbotron -->  
 <div class="jumbotron">
-
 </div>
 <!-- Navigation -->
 <div id="nav">
   <b><%= link_to 'Products' ,Product%></b> <br/>
-<%= link_to 'Order_Details' ,Orderdetail%></b>
+<%= link_to 'Order_Details' ,Orderdetail%></b><br/>
+<%= link_to 'Customer_Details' ,Customer%></b><br/>
+<%= link_to 'Address_Details' ,AddressDetail%></b>
 </div>
 <!-- Section -->
 <div id="section">
 </div>
 </body>
+</html>
 
 
 

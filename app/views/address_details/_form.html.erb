@@ -1,41 +1,76 @@
-<%= form_for(@address_detail) do |f| %>
-  <% if @address_detail.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@address_detail.errors.count, "error") %> prohibited this address_detail from being saved:</h2>
+<%= form_for @address_detail, :html => { :class => "form-horizontal address_detail" } do |f| %>
 
-      <ul>
-      <% @address_detail.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @address_detail.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@address_detail.errors.count, "error") %> prohibited this address_detail from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @address_detail.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :line1 %><br>
-    <%= f.text_area :line1 %>
+  <div class="form-group">
+    <%= f.label :line1, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :line1, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:line1) %>
   </div>
-  <div class="field">
-    <%= f.label :line2 %><br>
-    <%= f.text_area :line2 %>
+  <div class="form-group">
+    <%= f.label :line2, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :line2, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:line2) %>
   </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+  <div class="form-group">
+    <%= f.label :city, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :city, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:city) %>
   </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
+  <div class="form-group">
+    <%= f.label :state, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :state, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:state) %>
   </div>
-  <div class="field">
-    <%= f.label :postcode %><br>
-    <%= f.number_field :postcode %>
+  <div class="form-group">
+    <%= f.label :postcode, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :postcode, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:postcode) %>
   </div>
-  <div class="field">
-    <%= f.label :country %><br>
-    <%= f.text_field :country %>
+  <div class="form-group">
+    <%= f.label :country, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :country, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:country) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :customer_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :customer_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:customer_id) %>
   </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                address_details_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
 <% end %>

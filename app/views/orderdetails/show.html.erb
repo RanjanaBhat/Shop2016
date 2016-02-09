@@ -1,54 +1,37 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Orderdetail -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Order no:</strong>
-  <%= @orderdetail.order_no %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:order_no) %>:</strong></dt>
+  <dd><%= @orderdetail.order_no %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_express_delivery) %>:</strong></dt>
+  <dd><%= @orderdetail.is_express_delivery %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_customer_pickup) %>:</strong></dt>
+  <dd><%= @orderdetail.is_customer_pickup %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:delivery_date) %>:</strong></dt>
+  <dd><%= @orderdetail.delivery_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:carrier) %>:</strong></dt>
+  <dd><%= @orderdetail.carrier %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:order_currency) %>:</strong></dt>
+  <dd><%= @orderdetail.order_currency %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:order_value) %>:</strong></dt>
+  <dd><%= @orderdetail.order_value %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:payment_collection) %>:</strong></dt>
+  <dd><%= @orderdetail.payment_collection %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:special_instruction) %>:</strong></dt>
+  <dd><%= @orderdetail.special_instruction %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:delivery_slot) %>:</strong></dt>
+  <dd><%= @orderdetail.delivery_slot %></dd>
+</dl>
 
-<p>
-  <strong>Is express delivery:</strong>
-  <%= @orderdetail.is_express_delivery %>
-</p>
-
-<p>
-  <strong>Is customer pickup:</strong>
-  <%= @orderdetail.is_customer_pickup %>
-</p>
-
-<p>
-  <strong>Delivery date:</strong>
-  <%= @orderdetail.delivery_date %>
-</p>
-
-<p>
-  <strong>Delivery slot:</strong>
-  <%= @orderdetail.delivery_slot %>
-</p>
-
-<p>
-  <strong>Carrier:</strong>
-  <%= @orderdetail.carrier %>
-</p>
-
-<p>
-  <strong>Order currency:</strong>
-  <%= @orderdetail.order_currency %>
-</p>
-
-<p>
-  <strong>Order value:</strong>
-  <%= @orderdetail.order_value %>
-</p>
-
-<p>
-  <strong>Payment collection:</strong>
-  <%= @orderdetail.payment_collection %>
-</p>
-
-<p>
-  <strong>Special instruction:</strong>
-  <%= @orderdetail.special_instruction %>
-</p>
-
-<%= link_to 'Edit', edit_orderdetail_path(@orderdetail) %> |
-<%= link_to 'Back', orderdetails_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              orderdetails_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_orderdetail_path(@orderdetail), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              orderdetail_path(@orderdetail),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

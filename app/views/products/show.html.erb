@@ -1,59 +1,40 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Product -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Sku:</strong>
-  <%= @product.SKU %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:SKU) %>:</strong></dt>
+  <dd><%= @product.SKU %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @product.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:quantity) %>:</strong></dt>
+  <dd><%= @product.quantity %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:weight) %>:</strong></dt>
+  <dd><%= @product.weight %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:height) %>:</strong></dt>
+  <dd><%= @product.height %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:width) %>:</strong></dt>
+  <dd><%= @product.width %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:depth) %>:</strong></dt>
+  <dd><%= @product.depth %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:company) %>:</strong></dt>
+  <dd><%= @product.company %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cost_price) %>:</strong></dt>
+  <dd><%= @product.cost_price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:retail_price) %>:</strong></dt>
+  <dd><%= @product.retail_price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
+  <dd><%= image_tag(@product.photo, :size => "100x100", :alt => "Picture") %></dd>
+  
+</dl>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Quantity:</strong>
-  <%= @product.quantity %>
-</p>
-
-<p>
-  <strong>Weight:</strong>
-  <%= @product.weight %>
-</p>
-
-<p>
-  <strong>Height:</strong>
-  <%= @product.height %>
-</p>
-
-<p>
-  <strong>Width:</strong>
-  <%= @product.width %>
-</p>
-
-<p>
-  <strong>Depth:</strong>
-  <%= @product.depth %>
-</p>
-
-<p>
-  <strong>Company:</strong>
-  <%= @product.company %>
-</p>
-
-<p>
-  <strong>Cost price:</strong>
-  <%= @product.cost_price %>
-</p>
-
-<p>
-  <strong>Retail price:</strong>
-  <%= @product.retail_price %>
-</p>
-
-<p>
-  <strong>Image:</strong> <br/>
-  <%= image_tag(@product.photo, :size => "100x100", :alt => "Picture") %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              products_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_product_path(@product), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              product_path(@product),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

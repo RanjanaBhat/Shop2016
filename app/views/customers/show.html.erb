@@ -1,59 +1,39 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Customer -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @customer.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:addr1) %>:</strong></dt>
+  <dd><%= @customer.addr1 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:addr2) %>:</strong></dt>
+  <dd><%= @customer.addr2 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:addr3) %>:</strong></dt>
+  <dd><%= @customer.addr3 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:addr4) %>:</strong></dt>
+  <dd><%= @customer.addr4 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= @customer.city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
+  <dd><%= @customer.state %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
+  <dd><%= @customer.country %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:postcode) %>:</strong></dt>
+  <dd><%= @customer.postcode %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:contactno) %>:</strong></dt>
+  <dd><%= @customer.contactno %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @customer.email %></dd>
+</dl>
 
-<p>
-  <strong>Addr1:</strong>
-  <%= @customer.addr1 %>
-</p>
-
-<p>
-  <strong>Addr2:</strong>
-  <%= @customer.addr2 %>
-</p>
-
-<p>
-  <strong>Addr3:</strong>
-  <%= @customer.addr3 %>
-</p>
-
-<p>
-  <strong>Addr4:</strong>
-  <%= @customer.addr4 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @customer.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @customer.state %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @customer.country %>
-</p>
-
-<p>
-  <strong>Postcode:</strong>
-  <%= @customer.postcode %>
-</p>
-
-<p>
-  <strong>Contactno:</strong>
-  <%= @customer.contactno %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              customers_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_customer_path(@customer), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              customer_path(@customer),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

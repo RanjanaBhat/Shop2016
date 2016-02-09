@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><%= favicon_link_tag 'shop.ico' %>
+<head><%= favicon_link_tag 'shop2.ico' %>
   <title>Shop2016</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -20,7 +20,14 @@
 	<% end %>
 
 
-<%= yield %>
+<div class="container">
+  <div class="row">
+    <div class="span9"><%= yield %></div>
+    <div class="span3">
+             
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

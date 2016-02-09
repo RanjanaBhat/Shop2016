@@ -11,18 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208112106) do
+ActiveRecord::Schema.define(version: 20160209075128) do
 
   create_table "address_details", force: :cascade do |t|
-    t.text     "line1",      limit: 65535
-    t.text     "line2",      limit: 65535
-    t.string   "city",       limit: 255
-    t.string   "state",      limit: 255
-    t.integer  "postcode",   limit: 4
-    t.string   "country",    limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "line1",       limit: 65535
+    t.text     "line2",       limit: 65535
+    t.string   "city",        limit: 255
+    t.string   "state",       limit: 255
+    t.integer  "postcode",    limit: 4
+    t.string   "country",     limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "customer_id", limit: 4
   end
+
+  add_index "address_details", ["customer_id"], name: "index_address_details_on_customer_id", using: :btree
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.text     "addr1",             limit: 65535
+    t.text     "addr2",             limit: 65535
+    t.text     "addr3",             limit: 65535
+    t.text     "addr4",             limit: 65535
+    t.string   "city",              limit: 255
+    t.string   "state",             limit: 255
+    t.string   "country",           limit: 255
+    t.integer  "postcode",          limit: 4
+    t.integer  "contactno",         limit: 4
+    t.string   "email",             limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "address_detail_id", limit: 4
+  end
+
+  add_index "customers", ["address_detail_id"], name: "index_customers_on_address_detail_id", using: :btree
 
   create_table "line_items", force: :cascade do |t|
     t.string   "SKU",         limit: 255
@@ -38,7 +60,6 @@ ActiveRecord::Schema.define(version: 20160208112106) do
     t.boolean  "is_express_delivery"
     t.boolean  "is_customer_pickup"
     t.datetime "delivery_date"
-    t.datetime "delivery_slot"
     t.string   "carrier",             limit: 255
     t.string   "order_currency",      limit: 255
     t.integer  "order_value",         limit: 4
@@ -46,21 +67,28 @@ ActiveRecord::Schema.define(version: 20160208112106) do
     t.text     "special_instruction", limit: 65535
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.string   "delivery_slot",       limit: 255
   end
 
+  add_index "orderdetails", ["delivery_slot"], name: "index_orderdetails_on_delivery_slot", using: :btree
+
   create_table "products", force: :cascade do |t|
-    t.string   "SKU",          limit: 255
-    t.string   "name",         limit: 255
-    t.integer  "quantity",     limit: 4
-    t.float    "weight",       limit: 24
-    t.float    "height",       limit: 24
-    t.float    "width",        limit: 24
-    t.float    "depth",        limit: 24
-    t.string   "company",      limit: 255
-    t.float    "cost_price",   limit: 24
-    t.float    "retail_price", limit: 24
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "SKU",                limit: 255
+    t.string   "name",               limit: 255
+    t.integer  "quantity",           limit: 4
+    t.float    "weight",             limit: 24
+    t.float    "height",             limit: 24
+    t.float    "width",              limit: 24
+    t.float    "depth",              limit: 24
+    t.string   "company",            limit: 255
+    t.float    "cost_price",         limit: 24
+    t.float    "retail_price",       limit: 24
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "photo_file_name",    limit: 255
+    t.string   "photo_content_type", limit: 255
+    t.integer  "photo_file_size",    limit: 4
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", force: :cascade do |t|

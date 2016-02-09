@@ -1,57 +1,98 @@
-<%= form_for(@orderdetail) do |f| %>
-  <% if @orderdetail.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@orderdetail.errors.count, "error") %> prohibited this orderdetail from being saved:</h2>
+<%= form_for @orderdetail, :html => { :class => "form-horizontal orderdetail" } do |f| %>
 
-      <ul>
-      <% @orderdetail.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @orderdetail.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@orderdetail.errors.count, "error") %> prohibited this orderdetail from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @orderdetail.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :order_no %><br>
-    <%= f.number_field :order_no %>
+  <div class="form-group">
+    <%= f.label :order_no, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :order_no, :class => 'form-control', :required => true %>
+    </div>
+    <%=f.error_span(:order_no) %>
   </div>
-  <div class="field">
-    <%= f.label :is_express_delivery %><br>
-    <%= f.check_box :is_express_delivery %>
+  <div class="form-group">
+    <%= f.label :is_express_delivery, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.check_box :is_express_delivery, :class => 'form-control', :required => true  %>
+    </div>
+    <%=f.error_span(:is_express_delivery) %>
   </div>
-  <div class="field">
-    <%= f.label :is_customer_pickup %><br>
-    <%= f.check_box :is_customer_pickup %>
+  <div class="form-group">
+    <%= f.label :is_customer_pickup, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.check_box :is_customer_pickup, :class => 'form-control', :required => true  %>
+    </div>
+    <%=f.error_span(:is_customer_pickup) %>
   </div>
-  <div class="field">
-    <%= f.label :delivery_date %><br>
-    <%= f.datetime_select :delivery_date %>
+  <div class="form-group">
+    <%= f.label :delivery_date, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.date_select :delivery_date, :class => 'form-control', :required => true  %>
+    </div>
+    <%=f.error_span(:delivery_date) %>
   </div>
-  <div class="field">
-    <%= f.label :delivery_slot %><br>
-    <%= f.datetime_select :delivery_slot %>
+  <div class="form-group">
+    <%= f.label :delivery_slot, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%=f.select "delivery_slot", options_for_select([ "Morning", "Noon", "Evening", "Night" ]), :class => 'form-control', :required => true  %>
+    </div>
+    <%=f.error_span(:delivery_slot) %>
   </div>
-  <div class="field">
-    <%= f.label :carrier %><br>
-    <%= f.text_field :carrier %>
+  <div class="form-group">
+    <%= f.label :carrier, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select "carrier", options_for_select([ "FBA", "PDF", "SIP", "DIP" ]), :class => 'form-control', :required => true  %>
+    </div>
+    <%=f.error_span(:carrier) %>
   </div>
-  <div class="field">
-    <%= f.label :order_currency %><br>
-    <%= f.text_field :order_currency %>
+  <div class="form-group">
+    <%= f.label :order_currency, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%=  f.select "order_currency", options_for_select([ "USD", "INR", "EUR", "AFN", "AUD", "JPY"]), :class => 'form-control', :required => true  %>
+    </div>
+    <%=f.error_span(:order_currency) %>
   </div>
-  <div class="field">
-    <%= f.label :order_value %><br>
-    <%= f.number_field :order_value %>
+  <div class="form-group">
+    <%= f.label :order_value, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :order_value, :class => 'form-control', :required => true  %>
+    </div>
+    <%=f.error_span(:order_value) %>
   </div>
-  <div class="field">
-    <%= f.label :payment_collection %><br>
-    <%= f.text_field :payment_collection %>
+  <div class="form-group">
+    <%= f.label :payment_gateway, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%=f.select "payment_collection", options_for_select([ "PayU Money  ", " MasterCard Payment Gateway Services ", "NETbilling", "PayDollar", "PayU India", "DebitCard", "CreditCard"]), :class => 'form-control', :required => true  %>
+    </div>
+    <%=f.error_span(:payment_collection) %>
   </div>
-  <div class="field">
-    <%= f.label :special_instruction %><br>
-    <%= f.text_area :special_instruction %>
+  <div class="form-group">
+    <%= f.label :special_instruction, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :special_instruction, :class => 'form-control', :required => true ,size: "50x5"  %>
+    </div>
+    <%=f.error_span(:special_instruction) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                orderdetails_path, :class => 'btn btn-default' %>
+    </div>
   </div>
+
 <% end %>

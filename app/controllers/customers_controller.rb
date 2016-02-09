@@ -10,11 +10,19 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    @customer = Customer.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @customer }
+    end
+   
+    
   end
 
   # GET /customers/new
   def new
     @customer = Customer.new
+    @customer.address_details.build
   end
 
   # GET /customers/1/edit
@@ -69,6 +77,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :addr1, :addr2, :addr3, :addr4, :city, :state, :country, :postcode, :contactno, :email)
+      params.require(:customer).permit(:name, :addr1, :addr2, :addr3, :addr4, :city, :state, :country, :postcode, :contactno, :email, address_details_attributes: [:id,:line1,:line2,:city,:postcode,:state,:country])
     end
 end
