@@ -14,12 +14,15 @@
       </div>
     </div>
   <% end %>
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="row">
+<div class="  col-md-6  col-md-offset-3 ">
+<form data-toggle="validator" role="form">
+  <div class="row">
+    <div class=" col-md-6 ">
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :name, :class => 'form-control' %>
+    <%= f.label :name, :class => 'control-label col-md-2' %>
+    <div class="col-md-12">
+      <%= f.text_field :name, class: 'form-control input-lg', :required => true %>
     </div>
     <%=f.error_span(:name) %>
   </div>
@@ -27,14 +30,14 @@
   <div class="form-group">
     <%= addres.label :addr1, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= addres.text_field :line1, :class => 'form-control' %>
+      <%= addres.text_field :line1, :class => 'form-control', :required => true %>
     </div>
     <%=addres.error_span(:addr1) %>
   </div>
   <div class="form-group">
     <%= addres.label :addr2, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= addres.text_field :line2, :class => 'form-control' %>
+      <%= addres.text_field :line2, :class => 'form-control', :required => true %>
     </div>
     <%=addres.error_span(:addr2) %>
   </div>
@@ -48,28 +51,28 @@
   <div class="form-group">
     <%= addres.label :city, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= addres.text_field :city, :class => 'form-control' %>
+      <%= addres.text_field :city, :class => 'form-control', :required => true %>
     </div>
     <%=addres.error_span(:city) %>
   </div>
   <div class="form-group">
     <%= addres.label :state, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= addres.text_field :state, :class => 'form-control' %>
+      <%= addres.text_field :state, :class => 'form-control', :required => true %>
     </div>
     <%=addres.error_span(:state) %>
   </div>
   <div class="form-group">
     <%= addres.label :country, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= addres.text_field :country, :class => 'form-control' %>
+      <%= addres.text_field :country, :class => 'form-control', :required => true %>
     </div>
     <%=addres.error_span(:country) %>
   </div>
   <div class="form-group">
     <%= addres.label :postcode, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= addres.text_field :postcode, :class => 'form-control' %>
+      <%= addres.text_field :postcode, :class => 'form-control', :required => true %>
     </div>
     <%=addres.error_span(:postcode) %>
   </div>
@@ -77,18 +80,99 @@
   <div class="form-group">
     <%= f.label :contactno, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :contactno, :class => 'form-control' %>
+      <%= f.text_field :contactno, :class => 'form-control', :required => true %>
     </div>
     <%=f.error_span(:contactno) %>
   </div>
   <div class="form-group">
     <%= f.label :email, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :email, :class => 'form-control' %>
+      <%= f.text_field :email, :class => 'form-control', :required => true %>
     </div>
     <%=f.error_span(:email) %>
   </div>
-</div> </div>
+</div> 
+
+
+<%= f.fields_for :orderdetails do |order| %>
+  <div class="form-group">
+    <%= order.label :order_no, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= order.number_field :order_no, :class => 'form-control', :required => true %>
+    </div>
+    <%=order.error_span(:order_no) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :is_express_delivery, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= order.check_box :is_express_delivery, :class => 'form-control', :required => true  %>
+    </div>
+    <%=order.error_span(:is_express_delivery) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :is_customer_pickup, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= order.check_box :is_customer_pickup, :class => 'form-control', :required => true  %>
+    </div>
+    <%=order.error_span(:is_customer_pickup) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :delivery_date, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= order.date_select :delivery_date, :class => 'form-control', :required => true  %>
+    </div>
+    <%=order.error_span(:delivery_date) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :delivery_slot, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%=order.select "delivery_slot", options_for_select([ "Morning", "Noon", "Evening", "Night" ]), :class => 'form-control', :required => true  %>
+    </div>
+    <%=order.error_span(:delivery_slot) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :carrier, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= order.select "carrier", options_for_select([ "FBA", "PDF", "SIP", "DIP" ]), :class => 'form-control', :required => true  %>
+    </div>
+    <%=order.error_span(:carrier) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :order_currency, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%=  order.select "order_currency", options_for_select([ "USD", "INR", "EUR", "AFN", "AUD", "JPY"]), :class => 'form-control', :required => true  %>
+    </div>
+    <%=order.error_span(:order_currency) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :order_value, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= order.number_field :order_value, :class => 'form-control', :required => true  %>
+    </div>
+    <%=order.error_span(:order_value) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :payment_gateway, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%=order.select "payment_collection", options_for_select([ "PayU Money  ", " MasterCard Payment Gateway Services ", "NETbilling", "PayDollar", "PayU India", "DebitCard", "CreditCard"]), :class => 'form-control', :required => true  %>
+    </div>
+    <%=order.error_span(:payment_collection) %>
+  </div>
+  <div class="form-group">
+    <%= order.label :special_instruction, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= order.text_area :special_instruction, :class => 'form-control', :required => true ,size: "50x5"  %>
+    </div>
+    <%=order.error_span(:special_instruction) %>
+  </div>
+  <%end%>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>

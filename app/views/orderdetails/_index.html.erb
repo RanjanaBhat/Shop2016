@@ -16,7 +16,6 @@
       <th><%= model_class.human_attribute_name(:payment_collection) %></th>
       <th><%= model_class.human_attribute_name(:special_instruction) %></th>
       <th><%= model_class.human_attribute_name(:delivery_slot) %></th>
-      <th><%= model_class.human_attribute_name(:invoice) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -35,7 +34,6 @@
         <td><%= orderdetail.payment_collection %></td>
         <td><%= orderdetail.special_instruction %></td>
         <td><%= orderdetail.delivery_slot %></td>
-        <td><%= image_tag(orderdetail.invoice, :size => "100x100", :alt => "Picture") %></td>
         <td><%=l orderdetail.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -50,7 +48,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to new_orderdetail_path, :title => 'New Order', :rel => 'tooltip', class: "btn btn-primary" do %>
-    <span class="glyphicon glyphicon-new-window"></span>New
-<% end %>

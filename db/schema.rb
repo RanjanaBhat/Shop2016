@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209075128) do
+ActiveRecord::Schema.define(version: 20160210125334) do
 
   create_table "address_details", force: :cascade do |t|
     t.text     "line1",       limit: 65535
@@ -56,20 +56,26 @@ ActiveRecord::Schema.define(version: 20160209075128) do
   end
 
   create_table "orderdetails", force: :cascade do |t|
-    t.integer  "order_no",            limit: 4
+    t.integer  "order_no",             limit: 4
     t.boolean  "is_express_delivery"
     t.boolean  "is_customer_pickup"
     t.datetime "delivery_date"
-    t.string   "carrier",             limit: 255
-    t.string   "order_currency",      limit: 255
-    t.integer  "order_value",         limit: 4
-    t.string   "payment_collection",  limit: 255
-    t.text     "special_instruction", limit: 65535
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.string   "delivery_slot",       limit: 255
+    t.string   "carrier",              limit: 255
+    t.string   "order_currency",       limit: 255
+    t.integer  "order_value",          limit: 4
+    t.string   "payment_collection",   limit: 255
+    t.text     "special_instruction",  limit: 65535
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "delivery_slot",        limit: 255
+    t.integer  "customer_id",          limit: 4
+    t.string   "invoice_file_name",    limit: 255
+    t.string   "invoice_content_type", limit: 255
+    t.integer  "invoice_file_size",    limit: 4
+    t.datetime "invoice_updated_at"
   end
 
+  add_index "orderdetails", ["customer_id"], name: "index_orderdetails_on_customer_id", using: :btree
   add_index "orderdetails", ["delivery_slot"], name: "index_orderdetails_on_delivery_slot", using: :btree
 
   create_table "products", force: :cascade do |t|

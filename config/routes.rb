@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :dashboard
 
   root to: 'home#index'
+
+  get 'home/product'
+  get 'home/customer'
+  get 'home/orderdetail'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

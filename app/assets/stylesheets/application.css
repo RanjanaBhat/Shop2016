@@ -13,24 +13,36 @@
  
  *= require_tree .
  *= require_self
+
+ *= require_twitter/bootstrap
  */
- 
+
+
+#hdr {
+  background-image: url(hdrimg.jpg);
+  background-position: center;
+  color:white;
+  clear:both;
+  padding:20px;
+}
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+.container_i {
   
-.jumbotron {
-  
-  height: 400px;
+  height: auto;
   color:black;
   text-align:center;
-  padding:30px;
-  background-image: url(cart.jpg);
-  background-position: center;
+  padding:50px;
+  background-color: lightgrey;
+  
 }
 #sup{
   background-color: grey;
       
 }
 
-  .colorgraph {
+.colorgraph {
   height: 10px;
   border-top: 0;
   background: #c4e17f;
@@ -39,4 +51,9 @@
   background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+.container_home{
+    background-image: url(cart.jpg);
+
 }

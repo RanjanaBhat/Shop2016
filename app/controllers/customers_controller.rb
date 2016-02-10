@@ -18,11 +18,19 @@ class CustomersController < ApplicationController
    
     
   end
+  def autofill
+    @client = Client.where("name=?",params[:name]).take
+    respond_to do |format|
+     format.html # show.html.erb
+      format.json { render json: @customer }
+    end
+   end
 
   # GET /customers/new
   def new
     @customer = Customer.new
     @customer.address_details.build
+    @customer.orderdetails.build
   end
 
   # GET /customers/1/edit
@@ -77,6 +85,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :addr1, :addr2, :addr3, :addr4, :city, :state, :country, :postcode, :contactno, :email, address_details_attributes: [:id,:line1,:line2,:city,:postcode,:state,:country])
+      params.require(:customer).permit(:name, :addr1, :addr2, :addr3, :addr4, :city, :state, :country, :postcode, :contactno, :email, address_details_attributes: [:id,:line1,:line2,:city,:postcode,:state,:country], orderdetails_attributes: [:order_no,:is_express_delivery,:is_customer_pickup,:delivery_date,:carrier,:order_currency,:order_value,:payment_collection,:special_instruction,:delivery_slot])
     end
 end

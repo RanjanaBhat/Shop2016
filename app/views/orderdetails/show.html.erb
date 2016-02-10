@@ -24,6 +24,8 @@
   <dd><%= @orderdetail.special_instruction %></dd>
   <dt><strong><%= model_class.human_attribute_name(:delivery_slot) %>:</strong></dt>
   <dd><%= @orderdetail.delivery_slot %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:invoice) %>:</strong></dt>
+  <dd><%= image_tag(@orderdetail.invoice, :size => "100x100", :alt => "Picture") %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -1,19 +1,25 @@
 source 'https://rubygems.org'
-
+#get "requests/autofill/:name" => "requests#autofill", as: :requests_autofill
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.10'
+# New Gem
 gem 'devise'
+gem 'country_select'
+
+
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-
-  gem 'twitter-bootstrap-rails'
+# new gem
+gem 'will_paginate'
+gem 'twitter-bootstrap-rails'
 gem 'paperclip','~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

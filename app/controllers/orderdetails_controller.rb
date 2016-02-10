@@ -15,6 +15,7 @@ class OrderdetailsController < ApplicationController
   # GET /orderdetails/new
   def new
     @orderdetail = Orderdetail.new
+    @products = Product.all
   end
 
   # GET /orderdetails/1/edit
@@ -61,6 +62,7 @@ class OrderdetailsController < ApplicationController
     end
   end
 
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_orderdetail
@@ -69,6 +71,6 @@ class OrderdetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orderdetail_params
-      params.require(:orderdetail).permit(:order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction)
+      params.require(:orderdetail).permit(:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction)
     end
 end

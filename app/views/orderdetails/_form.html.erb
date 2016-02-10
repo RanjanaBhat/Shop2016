@@ -15,6 +15,46 @@
     </div>
   <% end %>
 
+<div class="form-group">
+    <%= f.label :customer_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :customer_id, id: 'input', :class => 'form-control' %>
+      </div>
+      <%= f.label :name, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+      <%= f.text_field :customer_id, id: 'name', :class => 'form-control' %>
+      </div>
+      <%= f.label :phone, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+      <%= f.text_field :customer_id, id: 'contactno', :class => 'form-control'%>
+      </div>
+      <%= f.label :email, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+      <%= f.text_field :customer_id, id: 'email', :class => 'form-control' %>
+    </div>
+    <%#=f.error_span(:order_no) %>
+  </div>
+<script>
+$("#input").keyup(function(){
+var  x = document.getElementById("input").value;
+$.ajax({
+type: 'GET',
+url:  "/customers/" + x,
+data: {id: x},
+dataType: 'json',
+
+success: function(r){
+v = r['variant'];
+console.log(v)
+$("#name").val(r['name']);
+$("#contactno").val(r['contactno']);
+$("#email").val(r['email']);
+}
+});
+});
+</script>
+
+
   <div class="form-group">
     <%= f.label :order_no, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -25,14 +65,14 @@
   <div class="form-group">
     <%= f.label :is_express_delivery, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.check_box :is_express_delivery, :class => 'form-control', :required => true  %>
+      <%= f.check_box :is_express_delivery, :class => 'form-control'  %>
     </div>
     <%=f.error_span(:is_express_delivery) %>
   </div>
   <div class="form-group">
     <%= f.label :is_customer_pickup, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.check_box :is_customer_pickup, :class => 'form-control', :required => true  %>
+      <%= f.check_box :is_customer_pickup, :class => 'form-control'  %>
     </div>
     <%=f.error_span(:is_customer_pickup) %>
   </div>
@@ -45,7 +85,7 @@
   </div>
   <div class="form-group">
     <%= f.label :delivery_slot, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-lg-10 ">
       <%=f.select "delivery_slot", options_for_select([ "Morning", "Noon", "Evening", "Night" ]), :class => 'form-control', :required => true  %>
     </div>
     <%=f.error_span(:delivery_slot) %>
@@ -85,11 +125,32 @@
     </div>
     <%=f.error_span(:special_instruction) %>
   </div>
+  <div class="form-group">
+    <%= f.label :invoice, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.file_field :invoice, :class => 'form-control',:required => true  %>
+    </div>
+    <%=f.error_span(:invoice) %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :product, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%# Product.all.each do |t| %>
+            <%#= select_tag(:product_ids, t.id, @orderdetail.products.include?(t), :name => 'orderdetail[product_ids][]') %>
+              <%#= t.name %>
+              <%#= collection_select(:product,:product_id,@products,:id,:name) %>
+              <%= f.select_tag 'product_id', options_for_select(@products.collect{ |p| [p.name, p.id] }) %>
+          <%# end %>
+    </div>
+    <%=f.error_span(:product) %>
+  </div><br/>
+
   
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= f.submit nil, :class => 'btn btn-primary' %><br/>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 orderdetails_path, :class => 'btn btn-default' %>
     </div>
