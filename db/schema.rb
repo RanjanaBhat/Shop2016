@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210125334) do
+ActiveRecord::Schema.define(version: 20160211133642) do
 
   create_table "address_details", force: :cascade do |t|
     t.text     "line1",       limit: 65535
@@ -42,9 +42,14 @@ ActiveRecord::Schema.define(version: 20160210125334) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "address_detail_id", limit: 4
+    t.string   "permalink",         limit: 255
+    t.string   "lname",             limit: 255
+    t.date     "bdate"
   end
 
   add_index "customers", ["address_detail_id"], name: "index_customers_on_address_detail_id", using: :btree
+  add_index "customers", ["lname"], name: "index_customers_on_lname", using: :btree
+  add_index "customers", ["permalink"], name: "index_customers_on_permalink", using: :btree
 
   create_table "line_items", force: :cascade do |t|
     t.string   "SKU",         limit: 255
@@ -53,7 +58,10 @@ ActiveRecord::Schema.define(version: 20160210125334) do
     t.decimal  "price",                     precision: 10
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.integer  "product_id",  limit: 4
   end
+
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
   create_table "orderdetails", force: :cascade do |t|
     t.integer  "order_no",             limit: 4
@@ -73,10 +81,16 @@ ActiveRecord::Schema.define(version: 20160210125334) do
     t.string   "invoice_content_type", limit: 255
     t.integer  "invoice_file_size",    limit: 4
     t.datetime "invoice_updated_at"
+    t.string   "permalink",            limit: 255
+    t.integer  "product_id",           limit: 4
+    t.string   "name",                 limit: 255
+    t.string   "pname",                limit: 255
   end
 
   add_index "orderdetails", ["customer_id"], name: "index_orderdetails_on_customer_id", using: :btree
   add_index "orderdetails", ["delivery_slot"], name: "index_orderdetails_on_delivery_slot", using: :btree
+  add_index "orderdetails", ["permalink"], name: "index_orderdetails_on_permalink", using: :btree
+  add_index "orderdetails", ["product_id"], name: "index_orderdetails_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "SKU",                limit: 255
@@ -95,7 +109,10 @@ ActiveRecord::Schema.define(version: 20160210125334) do
     t.string   "photo_content_type", limit: 255
     t.integer  "photo_file_size",    limit: 4
     t.datetime "photo_updated_at"
+    t.string   "permalink",          limit: 255
   end
+
+  add_index "products", ["permalink"], name: "index_products_on_permalink", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

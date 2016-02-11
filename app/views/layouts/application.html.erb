@@ -7,31 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <style>
-body {background-color: lightgrey ;
-}
+body {background-color: lightgrey ;}
+li {color: white;}
 </style>
 <div id="snow">
 <body >
 <div id="hdr">
-   <div class="container">
+   <div class="container-fluid">
       <ul class="nav navbar-nav pull-right">
         <% if user_signed_in? %>
         <b>Signed in as <%= current_user.email %>. Not you?</b> 
         <br/>
-          <div class="dropdown" align= "right">
-            <a class="dropdown-toggle"  data-toggle="dropdown" href="#" rel="tooltip" data-placement="top" title="User Account">
-            <%= current_user.name  %>
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-              <li><%= link_to 'Profile', edit_user_registration_path %></li>
-              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-              <li><%#= link_to 'Home', Category%></li>
+            <ul>
+              <li><%= link_to 'Profile', edit_user_registration_path ,{:style=>'color:white;'}%></li>
+              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete  %></li>
+              <li><%= link_to 'Home', root_path,{:style=>'color:white;'}%></li>
             </ul>
-          </div>
+         
         <% else %>
           <li><b><%= link_to 'Sign In', new_user_session_path, {:style=>'color:white;', :class => "css_class"} %></font></b></li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
-          <li><b><%= link_to 'Sign Up', new_user_registration_path ,{:style=>'color:white;', :class => "css_class"}%></b></li>
+          <li><b><%= link_to 'Sign Up', new_user_registration_path ,{:style=>'color:white;', :class => "css_class"}%></b></li><br/>
+          <li><b><%= link_to 'Home', root_path ,{:style=>'color:white;', :class => "css_class"}%></b></li>
         <% end %>
       </div>
       </ul>

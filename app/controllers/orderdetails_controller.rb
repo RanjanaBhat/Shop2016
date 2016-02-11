@@ -5,11 +5,15 @@ class OrderdetailsController < ApplicationController
   # GET /orderdetails.json
   def index
     @orderdetails = Orderdetail.all
+    @products = Product.all
+    #@address_detail = Address_detail.all
   end
 
   # GET /orderdetails/1
   # GET /orderdetails/1.json
   def show
+     @products = Product.all
+     
   end
 
   # GET /orderdetails/new
@@ -20,6 +24,7 @@ class OrderdetailsController < ApplicationController
 
   # GET /orderdetails/1/edit
   def edit
+    @products = Product.all
   end
 
   # POST /orderdetails
@@ -66,11 +71,11 @@ class OrderdetailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_orderdetail
-      @orderdetail = Orderdetail.find(params[:id])
+      @orderdetail = Orderdetail.find_by_permalink(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orderdetail_params
-      params.require(:orderdetail).permit(:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction)
+      params.require(:orderdetail).permit(:pname,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name)
     end
 end

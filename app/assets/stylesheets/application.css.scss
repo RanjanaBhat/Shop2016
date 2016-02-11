@@ -14,9 +14,25 @@
  *= require_tree .
  *= require_self
 
- *= require_twitter/bootstrap
+ 
  */
+/* "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
+.panel > .panel-heading {
+      background-color: orange;
+      size: auto;
+      font-family: Tahoma, Verdana, Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      max-width: 90;
+
+  }
+  .panel {
+  flex:1 0 100%;
+}
 
 #hdr {
   background-image: url(hdrimg.jpg);

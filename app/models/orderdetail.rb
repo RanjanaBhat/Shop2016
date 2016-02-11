@@ -4,4 +4,8 @@ class Orderdetail < ActiveRecord::Base
 	has_many :products
 	do_not_validate_attachment_file_type :invoice
 	 has_attached_file :invoice
+	 has_permalink :carrier
+	 def to_param
+  	permalink
+  end
 end

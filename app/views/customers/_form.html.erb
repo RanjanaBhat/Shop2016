@@ -1,184 +1,102 @@
+<!DOCTYPE html>
+<html lang='en'>
 <%= form_for @customer, :html => { :class => "form-horizontal customer" } do |f| %>
-
-  <% if @customer.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @customer.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
 <div class="row">
-<div class="  col-md-6  col-md-offset-3 ">
+<div class="  col-md-12  ">
 <form data-toggle="validator" role="form">
-  <div class="row">
-    <div class=" col-md-6 ">
-  <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-md-2' %>
-    <div class="col-md-12">
-      <%= f.text_field :name, class: 'form-control input-lg', :required => true %>
-    </div>
-    <%=f.error_span(:name) %>
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">Customer Details</div>
+  <div class="panel-body">
+  <div class="col-md-2">
+    <%= f.label :firstName, :class => 'control-label col-md-2' %>
+      <%= f.text_field :name, class: 'form-control input-md', :required => true %>
+    <span class="help-block with-errors"></span>
   </div>
+  <div class="col-md-2">
+    <%= f.label :lastName, :class => 'control-label col-md-2' %>
+      <%= f.text_field :lname, class: 'form-control input-md', :required => true %>
+    <span class="help-block with-errors"></span>
+  </div>
+  <div class="col-md-4">
+    <%= f.label :Birthdate, :class => 'control-label col-md-2' %><br/></br>
+    <div class="span-6" "offset-5">
+      <%= f.date_select :bdate, class: 'form-control input-md col-md-span-4', :required => true %>
+    <span class="help-block with-errors"></span>
+  </div>
+</div>
+  <!--Address Form-->
   <%= f.fields_for :address_details do |addres| %>
-  <div class="form-group">
-    <%= addres.label :addr1, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+  <div class="col-md-4">
+    <%= addres.label :address1, :class => 'control-label col-md-2' %>
+    
       <%= addres.text_field :line1, :class => 'form-control', :required => true %>
-    </div>
-    <%=addres.error_span(:addr1) %>
+   
+    <span class="help-block with-errors"></span>
   </div>
-  <div class="form-group">
-    <%= addres.label :addr2, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+  <div class="col-md-4 col-md-pull-8">
+    <%= addres.label :address2, :class => 'control-label col-md-2' %>
+    
       <%= addres.text_field :line2, :class => 'form-control', :required => true %>
-    </div>
-    <%=addres.error_span(:addr2) %>
+    
+    <span class="help-block with-errors"></span>  
   </div>
-  
-
-
-
-
-
-
-  <div class="form-group">
-    <%= addres.label :city, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+ <div class="col-md-4 ">    
+  <%= addres.label :city, :class => 'control-label col-md-2' %>
+   
       <%= addres.text_field :city, :class => 'form-control', :required => true %>
-    </div>
-    <%=addres.error_span(:city) %>
+<span class="help-block with-errors"></span>
   </div>
-  <div class="form-group">
-    <%= addres.label :state, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-md-4">
+    <%= addres.label :state, :class => 'control-label col-md-2' %>
       <%= addres.text_field :state, :class => 'form-control', :required => true %>
-    </div>
-    <%=addres.error_span(:state) %>
+    <span class="help-block with-errors"></span>
   </div>
-  <div class="form-group">
-    <%= addres.label :country, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-md-4">
+    <%= addres.label :country, :class => 'control-label col-md-2' %>
       <%= addres.text_field :country, :class => 'form-control', :required => true %>
-    </div>
-    <%=addres.error_span(:country) %>
+    <span class="help-block with-errors"></span>
   </div>
-  <div class="form-group">
-    <%= addres.label :postcode, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-md-2 ">
+    <%= addres.label :postcode, :class => 'control-label col-md-2' %>
       <%= addres.text_field :postcode, :class => 'form-control', :required => true %>
-    </div>
-    <%=addres.error_span(:postcode) %>
+    <span class="help-block with-errors"></span>
   </div>
   <%end%>
-  <div class="form-group">
-    <%= f.label :contactno, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-md-2 col-md-offset-2">
+    <%= f.label :contactNo, :class => 'control-label col-md-2' %>
       <%= f.text_field :contactno, :class => 'form-control', :required => true %>
-    </div>
-    <%=f.error_span(:contactno) %>
+    <span class="help-block with-errors"></span>
   </div>
-  <div class="form-group">
-    <%= f.label :email, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-md-4 col-md-offset-2">
+    <%= f.label :email, :class => 'control-label col-md-2' %>
       <%= f.text_field :email, :class => 'form-control', :required => true %>
-    </div>
-    <%=f.error_span(:email) %>
+    <span class="help-block with-errors"></span>
   </div>
 </div> 
+</div>
+</div>
 
-
-<%= f.fields_for :orderdetails do |order| %>
-  <div class="form-group">
-    <%= order.label :order_no, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= order.number_field :order_no, :class => 'form-control', :required => true %>
-    </div>
-    <%=order.error_span(:order_no) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :is_express_delivery, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= order.check_box :is_express_delivery, :class => 'form-control', :required => true  %>
-    </div>
-    <%=order.error_span(:is_express_delivery) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :is_customer_pickup, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= order.check_box :is_customer_pickup, :class => 'form-control', :required => true  %>
-    </div>
-    <%=order.error_span(:is_customer_pickup) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :delivery_date, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= order.date_select :delivery_date, :class => 'form-control', :required => true  %>
-    </div>
-    <%=order.error_span(:delivery_date) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :delivery_slot, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%=order.select "delivery_slot", options_for_select([ "Morning", "Noon", "Evening", "Night" ]), :class => 'form-control', :required => true  %>
-    </div>
-    <%=order.error_span(:delivery_slot) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :carrier, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= order.select "carrier", options_for_select([ "FBA", "PDF", "SIP", "DIP" ]), :class => 'form-control', :required => true  %>
-    </div>
-    <%=order.error_span(:carrier) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :order_currency, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%=  order.select "order_currency", options_for_select([ "USD", "INR", "EUR", "AFN", "AUD", "JPY"]), :class => 'form-control', :required => true  %>
-    </div>
-    <%=order.error_span(:order_currency) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :order_value, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= order.number_field :order_value, :class => 'form-control', :required => true  %>
-    </div>
-    <%=order.error_span(:order_value) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :payment_gateway, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%=order.select "payment_collection", options_for_select([ "PayU Money  ", " MasterCard Payment Gateway Services ", "NETbilling", "PayDollar", "PayU India", "DebitCard", "CreditCard"]), :class => 'form-control', :required => true  %>
-    </div>
-    <%=order.error_span(:payment_collection) %>
-  </div>
-  <div class="form-group">
-    <%= order.label :special_instruction, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= order.text_area :special_instruction, :class => 'form-control', :required => true ,size: "50x5"  %>
-    </div>
-    <%=order.error_span(:special_instruction) %>
-  </div>
-  <%end%>
 </div>
 </div>
 </div>
 </div>
 
 </div>
-
+<div class="row">
+      <div class="col-md-offset-1 col-md-2"><%= f.submit nil, :class => 'btn btn-primary btn-block btn-lg' %>
+      </div>
+      <div class=" col-md-2">
+        <%= link_to 'Cancel', customers_path, class: "btn btn-danger btn-block btn-lg" %>
+      </div>
+    </div>
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    <div class="col-md-offset-1 ">
+      <%#= f.submit nil, :class => 'btn btn-primary btn-block btn-lg' %>
+      <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 customers_path, :class => 'btn btn-default' %>
     </div>
   </div>
 
 <% end %>
+</html>
