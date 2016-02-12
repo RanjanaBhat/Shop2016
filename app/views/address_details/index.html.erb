@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang='en'>
 <%- model_class = AddressDetail -%>
+<br/><br/><br/><br/><br/><br/>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+<%#render @address_detail.customer.name%>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:customer) %></th>
       <th><%= model_class.human_attribute_name(:line1) %></th>
       <th><%= model_class.human_attribute_name(:line2) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
       <th><%= model_class.human_attribute_name(:state) %></th>
       <th><%= model_class.human_attribute_name(:postcode) %></th>
       <th><%= model_class.human_attribute_name(:country) %></th>
-      <th><%= model_class.human_attribute_name(:customer_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -23,13 +26,14 @@
     <% @address_details.each do |address_detail| %>
       <tr>
         <td><%= link_to address_detail.id, address_detail_path(address_detail) %></td>
+        <%# puts "#{address_detail.customer.name}"%>
+        <td><%= address_detail.customer_id %></td>
         <td><%= address_detail.line1 %></td>
         <td><%= address_detail.line2 %></td>
         <td><%= address_detail.city %></td>
         <td><%= address_detail.state %></td>
         <td><%= address_detail.postcode %></td>
         <td><%= address_detail.country %></td>
-        <td><%= address_detail.customer_id %></td>
         <td><%=l address_detail.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -44,7 +48,6 @@
     <% end %>
   </tbody>
 </table>
-
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_address_detail_path,
             :class => 'btn btn-primary' %>

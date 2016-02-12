@@ -25,9 +25,18 @@ li {color: white;}
             </ul>
          
         <% else %>
-          <li><b><%= link_to 'Sign In', new_user_session_path, {:style=>'color:white;', :class => "css_class"} %></font></b></li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
-          <li><b><%= link_to 'Sign Up', new_user_registration_path ,{:style=>'color:white;', :class => "css_class"}%></b></li><br/>
-          <li><b><%= link_to 'Home', root_path ,{:style=>'color:white;', :class => "css_class"}%></b></li>
+        <style>
+        li {color: white;}
+        </style>
+          <nav class="navbar navbar-default navbar-fixed-top">
+            <ul class="nav navbar-nav  navbar-left">
+              <li class="active"><%= link_to "Home", root_path %></li>
+              <li><%= link_to 'Customers', customers_path,{:style=>'color:white;'} %></li>
+              <li><%= link_to 'Addresses' , address_details_path,{:style=>'color:white;'} %></li>
+              <li><%= link_to 'Products' , products_path,{:style=>'color:white;'} %></li>   
+              <li><%= link_to 'Orders' , orderdetails_path,{:style=>'color:white;'} %></li> 
+            </ul>
+          </nav>  
         <% end %>
       </div>
       </ul>

@@ -1,104 +1,105 @@
 <!DOCTYPE html>
 <html lang='en'>
 <%= form_for @product, :html => { :class => "form-horizontal product" } do |f| %>
-<div class="row">
-<div class=" col-md-6 col-md-push-3  ">
-<form data-toggle="validator" role="form">
-<div class="row">
-  <div class="panel panel-default">
-    <div class="panel-heading">Product Details</div>
-  <div class="panel-body">
-  <div class="form-group">
-    <%= f.label :SKU, :class => 'control-label col-lg-2' %>
-    <div class="col-md-4">
-      <%= f.text_field :SKU, :class => 'form-control', :required => true %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-  <div class="col-md-6">
-      <%= f.text_field :name, :class => 'form-control',:required => true %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :quantity, :class => 'control-label col-lg-2' %>
-<div class="col-md-2">
-      <%= f.number_field :quantity, :class => 'form-control',:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :weight, :class => 'control-label col-lg-2' %>
-<div class="col-md-2">
-      <%= f.number_field :weight, :class => 'form-control',:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :height, :class => 'control-label col-lg-2' %>
-<div class="col-md-2">
-      <%= f.number_field :height, :class => 'form-control',:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :width, :class => 'control-label col-lg-2' %>
-<div class="col-md-2">
-      <%= f.number_field :width, :class => 'form-control',:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :depth, :class => 'control-label col-lg-2' %>
-<div class="col-md-2">
-      <%= f.number_field :depth, :class => 'form-control',:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :company, :class => 'control-label col-lg-2' %>
-<div class="col-md-4">
-      <%= f.text_field :company, :class => 'form-control',:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :cost_price, :class => 'control-label col-lg-2' %>
-<div class="col-md-2">
-      <%= f.text_field :cost_price, :class => 'form-control',:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :retail_price, :class => 'control-label col-lg-2' %>
-<div class="col-md-2">
-      <%= f.text_field :retail_price, :class => 'form-control',:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :upload_pic, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.file_field :photo,:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-
   <div class="row">
-      <div class="col-md-offset-4 col-md-2"><input type="submit" value="Create Product" class="btn btn-primary btn-block btn-lg">
-      </div>
-      <div class="  col-md-2">
-        <%= link_to 'Cancel', products_path, class: "btn btn-danger btn-block btn-lg" %>
-      </div>
+    <div class=" col-md-6 col-md-push-3  ">
+      <form data-toggle="validator" role="form">
+        <div class="row">
+          <div class="panel panel-default">
+            <div class="panel-heading">Product Details</div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <%= f.label :SKU, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-4">
+                    <%= f.text_field :SKU, :class => 'form-control', :required => true %>
+                  </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :name, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-6">
+                      <%= f.text_field :name, :class => 'form-control',:required => true %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :quantity, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-2">
+                      <%= f.number_field :quantity, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :weight, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-2">
+                      <%= f.number_field :weight, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :height, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-2">
+                      <%= f.number_field :height, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :width, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-2">
+                      <%= f.number_field :width, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :depth, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-2">
+                      <%= f.number_field :depth, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :company, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-4">
+                      <%= f.text_field :company, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :cost_price, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-2">
+                      <%= f.text_field :cost_price, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :retail_price, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-2">
+                      <%= f.text_field :retail_price, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :upload_pic, :class => 'control-label col-lg-2' %>
+                    <div class="col-lg-10">
+                      <%= f.file_field :photo,:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+            
+          </div>
+       </div>
+      
     </div>
+  </div>    
+  <div class="row">
+    <div class="col-md-offset-4 col-md-2">
+        <input type="submit" value="Create Product" class="btn btn-primary btn-block btn-lg">
+    </div>
+    <div class="  col-md-2">
+      <%= link_to 'Cancel', products_path, class: "btn btn-danger btn-block btn-lg" %>
+    </div>
+  </div>
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%#= f.submit nil, :class => 'btn btn-primary' %>
@@ -106,6 +107,5 @@
                 products_path, :class => 'btn btn-default' %>
     </div>
   </div>
-
 <% end %>
 </html>

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang='en'>
+<% will_paginate @orderdetails %>
+<br/><br/><br/><br/><br/><br/>
 <%- model_class = Orderdetail -%>
 <div class="page-header">
   <h1>Orders</h1>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -57,6 +60,9 @@
     <% end %>
   </tbody>
 </table>
+<div class="digg-pagination">
+  <%= will_paginate @orderdetails,renderer: BootstrapPagination::Rails %>
+</div>
 
 <%= link_to new_orderdetail_path, :title => 'New Order', :rel => 'tooltip', class: "btn btn-primary" do %>
     <span class="glyphicon glyphicon-new-window"></span>New

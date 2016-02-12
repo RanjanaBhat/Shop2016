@@ -5,12 +5,14 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.all
+    @customers = Customer.paginate(:page => params[:page], :per_page => 5) 
   end
 
   # GET /customers/1
   # GET /customers/1.json
   def show
     @customer = Customer.find_by_permalink(params[:id])
+    @address_details = Address_detail.where(customer_id: @customer.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @customer }
@@ -44,7 +46,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Order was successfully created.' }
+        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }

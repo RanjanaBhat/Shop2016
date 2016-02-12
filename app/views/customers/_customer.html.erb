@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <%- model_class = Customer -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -12,8 +14,6 @@
       <th><%= model_class.human_attribute_name(:birthday) %></th>
       <th><%= model_class.human_attribute_name(:addr1) %></th>
       <th><%= model_class.human_attribute_name(:addr2) %></th>
-      <th><%#= model_class.human_attribute_name(:addr3) %></th>
-      <th><%#= model_class.human_attribute_name(:addr4) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
       <th><%= model_class.human_attribute_name(:state) %></th>
       <th><%= model_class.human_attribute_name(:country) %></th>
@@ -33,8 +33,6 @@
         <% customer.address_details.each do |addres| %>
         <td><%= addres.line1 %></td>
         <td><%= addres.line2 %></td>
-        <td><%#= addres.addr3 %></td>
-        <td><%#= addres.addr4 %></td>
         <td><%= addres.city %></td>
         <td><%= addres.state %></td>
         <td><%= addres.country %></td>
@@ -56,4 +54,5 @@
     <% end %>
   </tbody>
 </table>
-</html>
+
+

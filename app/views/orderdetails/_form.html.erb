@@ -2,172 +2,195 @@
 <html lang='en'>
 <%= form_for @orderdetail, :html => { :class => "form-horizontal orderdetail" } do |f| %>
 <div class="row">
-<div class="  col-md-12  ">
-<form data-toggle="validator" role="form">
-<div class="row">
-  <div class="panel panel-default">
-    <div class="panel-heading">Customer Details</div>
-  <div class="panel-body">
+  <div class="  col-md-12  ">
+    <form data-toggle="validator" role="form">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading">Customer Details</div>
+            <div class="panel-body">
+              <div class="col-md-2">
+                <%= f.label :name, :class => 'control-label col-lg-2' %>
+                <%= f.text_field :name, id: 'input', :class => 'form-control', :required => true %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label :bdate, :class => 'control-label col-lg-2' %>
+                <%= f.text_field :customer_id, id: 'bdate', :class => 'form-control', :required => true %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label :phone, :class => 'control-label col-lg-2' %>
+                <%= f.text_field :customer_id, id: 'contactno', :class => 'form-control', :required => true%>
+              </div>
+              <div class="col-md-2">
+                <%= f.label :email, :class => 'control-label col-lg-2' %>
+                <%= f.text_field :customer_id, id: 'email', :class => 'form-control', :required => true %>
+              </div>
+            </div>
+          </div>
+        <script>
+        $("#input").keyup(function(){
+        var  x = document.getElementById("input").value;
+        $.ajax({
+        type: 'GET',
+        url:  "/customers/" + x,
+        data: {id: x},
+        dataType: 'json',
+        success: function(r){
+        v = r['variant'];
+        console.log(v)
+        $("#name").val(r['name']);
+        $("#bdate").val(r['bdate'])
+        $("#contactno").val(r['contactno']);
+        $("#email").val(r['email']);
+        }
+        });
+        });
+        </script>
+        <div class="panel panel-default">
+          <div class="panel-heading">Order Details</div>
+            <div class="panel-body">
+              <div class="col-md-2">
+                <%= f.label :orderno, :class => 'control-label col-lg-2'%>
+                <%= f.number_field :order_no, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-4 col-md-offset-1">
+                <%= f.label :is_express_delivery, :class => 'control-label col-md-6 col-md-offset-3' %>
+                <%= f.check_box :is_express_delivery, :class => 'form-control'  %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-4">
+                <%= f.label :is_customer_pickup, :class => 'control-label col-md-6 col-md-offset-3' %>
+                <%= f.check_box :is_customer_pickup, :class => 'form-control'  %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group ">
+                <%= f.label :delivery_date, :class =>'control-label col-md-6 col-md-pull-4'%>
+                  <div class="col-md-4 col-md-pull-4">
+                    <%= f.date_select :delivery_date, :class => 'form-control', :required => true  %>
+                  </div>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group">
+                <%= f.label :delivery_slot, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-6">
+                    <%=f.select "delivery_slot", options_for_select([ "Morning", "Noon", "Evening", "Night" ]), prompt: "Select", :class => 'form-control', :required => true  %>
+                  </div>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group">
+                <%= f.label :carrier, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-6">
+                    <%= f.select "carrier", options_for_select([ "FBA", "PDF", "SIP", "DIP" ]),prompt: "Select", :class => 'form-control', :required => true  %>
+                  </div>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group">
+                <%= f.label :order_currency, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-6">
+                    <%=  f.select "order_currency", options_for_select([ "USD", "INR", "EUR", "AFN", "AUD", "JPY"]),prompt: "Select", :class => 'form-control', :required => true  %>
+                  </div>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group">
+                <%= f.label :order_value, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-2">
+                    <%= f.number_field :order_value, :class => 'form-control', :required => true  %>
+                  </div>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group">
+                <%= f.label :payment_gateway, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-6">
+                    <%=f.select "payment_collection", options_for_select([ "PayU Money  ", " MasterCard Payment Gateway Services ", "NETbilling", "PayDollar", "PayU India", "DebitCard", "CreditCard"]),prompt: "Select", :class => 'form-control', :required => true  %>
+                  </div>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group">
+                <%= f.label :special_instruction, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-6">
+                    <%= f.text_area :special_instruction, :class => 'form-control', :required => true ,size: "50x5"  %>
+                  </div>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="form-group">
+                <%= f.label :invoice, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-6">
+                    <%= f.file_field :invoice,:required => true  %>
+                  </div>
+                <span class="help-block with-errors"></span>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">Product Details</div>
+              <div class="panel-body">
+    <!--
     <div class="col-md-2">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-      <%= f.text_field :name, id: 'input', :class => 'form-control', :required => true %>
+    <%#= f.label :SKU, :class => 'control-label col-lg-2' %>
+      <%#= f.text_field :SKU, id: 'input', :class => 'form-control', :required => true %>
       </div>
       <div class="col-md-2">
-      <%= f.label :bdate, :class => 'control-label col-lg-2' %>
-      <%= f.text_field :customer_id, id: 'bdate', :class => 'form-control', :required => true %>
+      <%#= f.label :name, :class => 'control-label col-lg-2' %>
+      <%#= f.text_field :product_id, id: 'name', :class => 'form-control', :required => true %>
       </div>
       <div class="col-md-2">
-      <%= f.label :phone, :class => 'control-label col-lg-2' %>
-      <%= f.text_field :customer_id, id: 'contactno', :class => 'form-control', :required => true%>
+      <%#= f.label :company, :class => 'control-label col-lg-2' %>
+      <%#= f.text_field :product_id, id: 'company', :class => 'form-control', :required => true%>
       </div>
-      <div class="col-md-2">
-      <%= f.label :email, :class => 'control-label col-lg-2' %>
-      <%= f.text_field :customer_id, id: 'email', :class => 'form-control', :required => true %>
-      </div>
-      <div class="col-md-6">
-        <ul class="nav nav-tabs">
-    
-    <li><a href="#tab1" data-toggle="tab">Add Address</a></li>
-    
-    </ul>
-      <%#= link_to 'Add Address'%>
-      <div class="tab-pane" id="tab1">
-      <%#= render :partial => "customers/address" ,:f=> f %>
-    </div>
-    </div>
-    </div>
-  </div>
-<script>
+      -->
+
+      <!--Script
+      <script>
 $("#input").keyup(function(){
 var  x = document.getElementById("input").value;
 $.ajax({
 type: 'GET',
-url:  "/customers/" + x,
+url:  "/products/" + x,
 data: {id: x},
 dataType: 'json',
 
 success: function(r){
 v = r['variant'];
 console.log(v)
-$("#name").val(r['name']);
-$("#bdate").val(r['bdate'])
-$("#contactno").val(r['contactno']);
-$("#email").val(r['email']);
+$("#SKU").val(r['SKU']);
+$("#name").val(r['name'])
+$("#company").val(r['company']);
 }
 });
 });
 </script>
-<div class="panel panel-default">
-    <div class="panel-heading">Order Details</div>
-  <div class="panel-body">
-  <div class="col-md-2">
-    <%= f.label :orderno, :class => 'control-label col-lg-2'%>
-      <%= f.number_field :order_no, :class => 'form-control', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="col-md-4 col-md-offset-1">
-    <%= f.label :is_express_delivery, :class => 'control-label col-md-6 col-md-offset-3' %>
-      <%= f.check_box :is_express_delivery, :class => 'form-control'  %>
-      
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="col-md-4">
-    <%= f.label :is_customer_pickup, :class => 'control-label col-md-6 col-md-offset-3' %>
-      <%= f.check_box :is_customer_pickup, :class => 'form-control'  %>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group ">
-    <%= f.label :delivery_date, :class =>'control-label col-md-6 col-md-pull-4'%>
-    <div class="col-md-4 col-md-pull-4">
-    <%= f.date_select :delivery_date, :class => 'form-control', :required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :delivery_slot, :class => 'control-label col-lg-2' %>
-    <div class="col-md-6">
-      <%=f.select "delivery_slot", options_for_select([ "Morning", "Noon", "Evening", "Night" ]), prompt: "Select", :class => 'form-control', :required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :carrier, :class => 'control-label col-lg-2' %>
-    <div class="col-md-6">
-      <%= f.select "carrier", options_for_select([ "FBA", "PDF", "SIP", "DIP" ]),prompt: "Select", :class => 'form-control', :required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :order_currency, :class => 'control-label col-lg-2' %>
-    <div class="col-md-6">
-      <%=  f.select "order_currency", options_for_select([ "USD", "INR", "EUR", "AFN", "AUD", "JPY"]),prompt: "Select", :class => 'form-control', :required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :order_value, :class => 'control-label col-lg-2' %>
-    <div class="col-md-2">
-      <%= f.number_field :order_value, :class => 'form-control', :required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :payment_gateway, :class => 'control-label col-lg-2' %>
-    <div class="col-md-6">
-      <%=f.select "payment_collection", options_for_select([ "PayU Money  ", " MasterCard Payment Gateway Services ", "NETbilling", "PayDollar", "PayU India", "DebitCard", "CreditCard"]),prompt: "Select", :class => 'form-control', :required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :special_instruction, :class => 'control-label col-lg-2' %>
-    <div class="col-md-6">
-      <%= f.text_area :special_instruction, :class => 'form-control', :required => true ,size: "50x5"  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :invoice, :class => 'control-label col-lg-2' %>
-    <div class="col-md-6">
-      <%= f.file_field :invoice,:required => true  %>
-    </div>
-    <span class="help-block with-errors"></span>
-  </div>
-</div>
-</div>
-  <div class="panel panel-default">
-    <div class="panel-heading">Product Details</div>
-  <div class="panel-body">
-<div class="form-group">
-    <%= f.label :product, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%# Product.all.each do |t| %>
-            <%#= select_tag(:product_ids, t.id, @orderdetail.products.include?(t), :name => 'orderdetail[product_ids][]') %>
-              <%#= t.name %>
-              <%#= collection_select(:product,:product_id,@products,:id,:name) %>
-              <%= f.select :pname, options_for_select(@products.collect{ |p| [p.name, p.name] }) %>
-          <%# end %>
-    </div>
-    
-</div>
-</div>
-</div>
-</div>
-</div>
+END-->
+                <div class="form-group">
+                  <%#= f.label :product, :class => 'control-label col-lg-2' %>
+                  <div class="col-lg-10">
+                    <%# Product.all.each do |t| %>
+                    <%#= select_tag(:product_ids, t.id, @orderdetail.products.include?(t), :name => 'orderdetail[product_ids][]') %>
+                    <%#= t.name %>
+                    <%#= collection_select(:product,:product_id,@products,:id,:name) %>
+                    <%= f.select :pname, options_for_select(@products.collect{ |p| [p.name, p.name] }) %>
+                    <%# end %>
+                  </div>
+                </div> 
+              </div>
+            
+          </div>
+        </div>
   
-<div class="row">
-      <div class="col-md-offset-1 col-md-2"><input type="submit" value="Create Order" class="btn btn-primary btn-block btn-lg">
-      </div>
-      <div class=" col-md-2">
-        <%= link_to 'Cancel', orderdetails_path, class: "btn btn-danger btn-block btn-lg" %>
-      </div>
-    </div>
-  <div class="form-group">
-    <div class="col-md-offset-2 col-md-2">
-      <%#= f.submit nil, :class => 'btn btn-primary btn-block btn-lg' %><br/>
-      <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                orderdetails_path, :class => 'btn btn-default' %>
-    </div>
   </div>
-
+</div>
+<div class="row">
+  <div class="col-md-offset-1 col-md-2"><input type="submit" value="Create Order" class="btn btn-primary btn-block btn-lg">
+  </div>
+  <div class=" col-md-2">
+    <%= link_to 'Cancel', orderdetails_path, class: "btn btn-danger btn-block btn-lg" %>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-md-offset-2 col-md-2">
+    <%#= f.submit nil, :class => 'btn btn-primary btn-block btn-lg' %><br/>
+    <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                orderdetails_path, :class => 'btn btn-default' %>
+  </div>
+</div>
 <% end %>
 </html>

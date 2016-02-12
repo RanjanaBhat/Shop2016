@@ -34,12 +34,13 @@
   flex:1 0 100%;
 }
 
-#hdr {
+.navbar {
+
   background-image: url(hdrimg.jpg);
   background-position: center;
   color:white;
   clear:both;
-  padding:20px;
+  padding:10px;
 }
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
@@ -47,9 +48,10 @@
 .container_i {
   
   height: auto;
+  width: auto;
   color:black;
   text-align:center;
-  padding:50px;
+  padding:5px;
   background-color: lightgrey;
   
 }

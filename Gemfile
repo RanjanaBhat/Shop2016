@@ -7,7 +7,7 @@ gem 'rails', '4.2.5.1'
 gem 'mysql2', '~> 0.3.10'
 # New Gem
 gem 'devise'
-gem 'country_select'
+#gem 'country_select'
 
 
 
@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # new gem
 gem 'has_permalink'
-gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 

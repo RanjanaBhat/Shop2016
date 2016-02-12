@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211133642) do
+ActiveRecord::Schema.define(version: 20160212053114) do
 
   create_table "address_details", force: :cascade do |t|
     t.text     "line1",       limit: 65535
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160211133642) do
     t.integer  "product_id",           limit: 4
     t.string   "name",                 limit: 255
     t.string   "pname",                limit: 255
+    t.string   "SKU",                  limit: 255
   end
 
   add_index "orderdetails", ["customer_id"], name: "index_orderdetails_on_customer_id", using: :btree

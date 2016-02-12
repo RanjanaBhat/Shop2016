@@ -5,11 +5,11 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
 </head>
 <style>
-body {background-color: black;
-}
+body {background-color: black;}
 </style>
 <body>
-    <!-- Nav tabs -->
+</br></br></br></br>
+  <!-- Nav tabs -->
     <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Customers</a></li>
     <li><a href="#tab2" data-toggle="tab">Products</a></li>
@@ -18,10 +18,6 @@ body {background-color: black;
     
   <!-- Container -->  
 <div class="container_i">
-<%= link_to 'Products' ,Product%></b>| 
-<%= link_to 'Order_Details' ,Orderdetail%></b>|
-<%= link_to 'Customer_Details' ,Customer%></b>|
-<%= link_to 'Address_Details' ,AddressDetail%>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
       <%= render :partial => "customers/customer" %>
@@ -30,17 +26,13 @@ body {background-color: black;
       <%#= render "products/index" locals: (products: @products) %>
       <%= render :partial => "products/product" %>
     </div>
-  </div>
-  <div class="tab-pane" id="tab3">
+    <div class="tab-pane" id="tab3">
       <%= render :partial => "orderdetails/order" %>
     </div>
-
+  </div>
 </div>
-
 </body>
 </html>
-
-
 
   
 

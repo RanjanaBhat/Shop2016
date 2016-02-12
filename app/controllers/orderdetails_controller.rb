@@ -6,6 +6,8 @@ class OrderdetailsController < ApplicationController
   def index
     @orderdetails = Orderdetail.all
     @products = Product.all
+    #@products = Product.search(params[:search])
+    @orderdetails = Orderdetail.paginate(:page => params[:page], :per_page => 5) 
     #@address_detail = Address_detail.all
   end
 
@@ -34,7 +36,7 @@ class OrderdetailsController < ApplicationController
 
     respond_to do |format|
       if @orderdetail.save
-        format.html { redirect_to @orderdetail, notice: 'Orderdetail was successfully created.' }
+        format.html { redirect_to @orderdetail, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @orderdetail }
       else
         format.html { render :new }
@@ -76,6 +78,6 @@ class OrderdetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orderdetail_params
-      params.require(:orderdetail).permit(:pname,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name)
+      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name)
     end
 end

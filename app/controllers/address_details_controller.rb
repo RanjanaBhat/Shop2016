@@ -5,11 +5,13 @@ class AddressDetailsController < ApplicationController
   # GET /address_details.json
   def index
     @address_details = AddressDetail.all
+    @customers = Customer.all
   end
 
   # GET /address_details/1
   # GET /address_details/1.json
   def show
+    @customers = Customer.all
   end
 
   # GET /address_details/new
@@ -69,6 +71,6 @@ class AddressDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def address_detail_params
-      params.require(:address_detail).permit(:line1, :line2, :city, :state, :postcode, :country)
+      params.require(:address_detail).permit(:line1, :line2, :city, :state, :postcode, :country,:name,:orderdeatil_id,:customer_id)
     end
 end

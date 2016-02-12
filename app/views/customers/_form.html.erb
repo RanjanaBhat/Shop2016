@@ -2,101 +2,109 @@
 <html lang='en'>
 <%= form_for @customer, :html => { :class => "form-horizontal customer" } do |f| %>
 <div class="row">
-<div class="  col-md-12  ">
-<form data-toggle="validator" role="form">
-<div class="row">
-  <div class="panel panel-default">
-    <div class="panel-heading">Customer Details</div>
-  <div class="panel-body">
-  <div class="col-md-2">
-    <%= f.label :firstName, :class => 'control-label col-md-2' %>
-      <%= f.text_field :name, class: 'form-control input-md', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="col-md-2">
-    <%= f.label :lastName, :class => 'control-label col-md-2' %>
-      <%= f.text_field :lname, class: 'form-control input-md', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="col-md-4">
-    <%= f.label :Birthdate, :class => 'control-label col-md-2' %><br/></br>
-    <div class="span-6" "offset-5">
-      <%= f.date_select :bdate, class: 'form-control input-md col-md-span-4', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-</div>
-  <!--Address Form-->
-  <%= f.fields_for :address_details do |addres| %>
-  <div class="col-md-4">
-    <%= addres.label :address1, :class => 'control-label col-md-2' %>
-    
-      <%= addres.text_field :line1, :class => 'form-control', :required => true %>
-   
-    <span class="help-block with-errors"></span>
-  </div>
-  <div class="col-md-4 col-md-pull-8">
-    <%= addres.label :address2, :class => 'control-label col-md-2' %>
-    
-      <%= addres.text_field :line2, :class => 'form-control', :required => true %>
-    
-    <span class="help-block with-errors"></span>  
-  </div>
- <div class="col-md-4 ">    
-  <%= addres.label :city, :class => 'control-label col-md-2' %>
-   
-      <%= addres.text_field :city, :class => 'form-control', :required => true %>
-<span class="help-block with-errors"></span>
-  </div>
-    <div class="col-md-4">
-    <%= addres.label :state, :class => 'control-label col-md-2' %>
-      <%= addres.text_field :state, :class => 'form-control', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-    <div class="col-md-4">
-    <%= addres.label :country, :class => 'control-label col-md-2' %>
-      <%= addres.text_field :country, :class => 'form-control', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-    <div class="col-md-2 ">
-    <%= addres.label :postcode, :class => 'control-label col-md-2' %>
-      <%= addres.text_field :postcode, :class => 'form-control', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-  <%end%>
-    <div class="col-md-2 col-md-offset-2">
-    <%= f.label :contactNo, :class => 'control-label col-md-2' %>
-      <%= f.text_field :contactno, :class => 'form-control', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-    <div class="col-md-4 col-md-offset-2">
-    <%= f.label :email, :class => 'control-label col-md-2' %>
-      <%= f.text_field :email, :class => 'form-control', :required => true %>
-    <span class="help-block with-errors"></span>
-  </div>
-</div> 
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="row">
-      <div class="col-md-offset-1 col-md-2"><%= f.submit nil, :class => 'btn btn-primary btn-block btn-lg' %>
+  <div class="  col-md-12  ">
+    <form data-toggle="validator" role="form">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading">Customer Details</div>
+            <div class="panel-body">
+              <div class="col-md-2">
+                <%= f.label :firstName, :class => 'control-label col-md-2' %>
+                <%= f.text_field :name, class: 'form-control input-md', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-2">
+                <%= f.label :lastName, :class => 'control-label col-md-2' %>
+                <%= f.text_field :lname, class: 'form-control input-md', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-4">
+                <%= f.label :Birthdate, :class => 'control-label col-md-2' %><br/></br>
+                <div class="span-6" "offset-5">
+                <%= f.date_select :bdate, class: 'form-control input-md col-md-span-4', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+            </div>
+            <!--Address Form-->
+            <%= f.fields_for :address_details do |addres| %>
+              <div class="col-md-4">
+                <%= addres.label :address1, :class => 'control-label col-md-2' %>
+                <%= addres.text_field :line1, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-4 col-md-pull-8">
+                <%= addres.label :address2, :class => 'control-label col-md-2' %>
+                <%= addres.text_field :line2, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>  
+              </div>
+              <div class="col-md-4 ">    
+                <%= addres.label :city, :class => 'control-label col-md-2' %>
+                <%= addres.text_field :city, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-4">
+                <%= addres.label :state, :class => 'control-label col-md-2' %>
+                <%= addres.text_field :state, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-4">
+                <%= addres.label :country, :class => 'control-label col-md-2' %>
+                <%= addres.text_field :country, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-2 ">
+                <%= addres.label :postcode, :class => 'control-label col-md-2' %>
+                <%= addres.text_field :postcode, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              
+              
+              <%#= link_to render(:partial => "address"), :f => addres do %>
+              <%# end %>
+                <%#= link_to 'Add Address', select_partial_path(option: "address") %>
+              <%#= link_to render(:partial => 'customers/address'), Add_Address %>
+              <%#= link_to 'Add Address',render 'address', :f => addres %>
+              <%#= render 'address', :f => addres %>
+            <%end%>
+            <div class="col-md-2 col-md-offset-2">
+              <%= f.label :contactNo, :class => 'control-label col-md-2' %>
+              <%= f.text_field :contactno, :class => 'form-control', :required => true %>
+              <span class="help-block with-errors"></span>
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+              <%= f.label :email, :class => 'control-label col-md-2' %>
+              <%= f.text_field :email, :class => 'form-control', :required => true %>
+              <span class="help-block with-errors"></span>
+            </div>
+            <a href="#tab1" data-toggle="tab">Add Address</a>
+              <%= f.fields_for :address_details do |addres| %>
+                <div class="tab-content">
+                  <div class="tab-pane" id="tab1">
+                    <%= render 'address', :f => addres %>
+                  </div>
+                </div>
+              <%end%>
+          </div> 
+        </div>
       </div>
-      <div class=" col-md-2">
-        <%= link_to 'Cancel', customers_path, class: "btn btn-danger btn-block btn-lg" %>
-      </div>
-    </div>
-  <div class="form-group">
-    <div class="col-md-offset-1 ">
-      <%#= f.submit nil, :class => 'btn btn-primary btn-block btn-lg' %>
-      <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                customers_path, :class => 'btn btn-default' %>
-    </div>
+    
   </div>
-
+</div>
+<div class="row">
+  <div class="col-md-offset-1 col-md-2">
+    <%= f.submit nil, :class => 'btn btn-primary btn-block btn-lg'%>
+  </div>
+  <div class=" col-md-2">
+    <%= link_to 'Cancel', customers_path, class: "btn btn-danger btn-block btn-lg" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-offset-1 col-md-2">
+    <%#= f.submit nil, :class => 'btn btn-primary btn-block btn-lg' %>
+  </div>
+  <div class=" col-md-2">
+    <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),customers_path, :class => 'btn btn-danger btn-block btn-lg' %>
+  </div>
+</div>
 <% end %>
 </html>

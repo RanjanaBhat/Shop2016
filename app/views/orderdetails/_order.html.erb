@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <%- model_class = Orderdetail -%>
 <div class="page-header">
   <h1>Orders</h1>
 </div>
-<table class="table table-hover">
+
+<table class="table table-striped">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:product) %></th>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:cname) %></th>
       <th><%= model_class.human_attribute_name(:order_no) %></th>
@@ -20,17 +23,17 @@
       <th><%= model_class.human_attribute_name(:special_instruction) %></th>
       <th><%= model_class.human_attribute_name(:delivery_slot) %></th>
       <th><%= model_class.human_attribute_name(:invoice) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <!--<th><%= model_class.human_attribute_name(:created_at) %></th>-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @orderdetails.each do |orderdetail| %>
       <tr>
+        <td><%= orderdetail.pname %></td>
         <td><%= link_to orderdetail.id, orderdetail_path(orderdetail) %></td>
         <td><%= orderdetail.name %></td>
         <td><%= orderdetail.order_no %></td>
-
         <td><%= orderdetail.is_express_delivery %></td>
         <td><%= orderdetail.is_customer_pickup %></td>
         <td><%= orderdetail.delivery_date %></td>
@@ -41,7 +44,7 @@
         <td><%= orderdetail.special_instruction %></td>
         <td><%= orderdetail.delivery_slot %></td>
         <td><%= image_tag(orderdetail.invoice, :size => "100x100", :alt => "Picture") %></td>
-        <td><%=l orderdetail.created_at %></td>
+        <!--<td><%=l orderdetail.created_at %></td>-->
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_orderdetail_path(orderdetail), :class => 'btn btn-default btn-xs' %>
