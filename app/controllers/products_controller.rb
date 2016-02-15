@@ -10,6 +10,11 @@ class ProductsController < ApplicationController
       format.html  #index.html.erb
       format.json { render json: @products }
     end
+    if params[:search]
+    @products = Product.search(params[:search]).order("created_at DESC")
+  else
+    @products = Product.all.order('created_at DESC')
+  end
   end
 
   # GET /products/1

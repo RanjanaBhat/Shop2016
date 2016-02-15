@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
   # GET /customers/1.json
   def show
     @customer = Customer.find_by_permalink(params[:id])
-    @address_details = Address_detail.where(customer_id: @customer.id)
+   # @address_details = Address_detail.where(customer_id: @customer.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @customer }
@@ -32,7 +32,7 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
     @customer.address_details.build
-    @customer.orderdetails.build
+    
   end
 
   # GET /customers/1/edit

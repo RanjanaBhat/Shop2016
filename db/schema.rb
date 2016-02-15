@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212053114) do
+ActiveRecord::Schema.define(version: 20160215063233) do
 
   create_table "address_details", force: :cascade do |t|
     t.text     "line1",       limit: 65535
@@ -28,26 +28,24 @@ ActiveRecord::Schema.define(version: 20160212053114) do
   add_index "address_details", ["customer_id"], name: "index_address_details_on_customer_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
-    t.string   "name",              limit: 255
-    t.text     "addr1",             limit: 65535
-    t.text     "addr2",             limit: 65535
-    t.text     "addr3",             limit: 65535
-    t.text     "addr4",             limit: 65535
-    t.string   "city",              limit: 255
-    t.string   "state",             limit: 255
-    t.string   "country",           limit: 255
-    t.integer  "postcode",          limit: 4
-    t.integer  "contactno",         limit: 4
-    t.string   "email",             limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "address_detail_id", limit: 4
-    t.string   "permalink",         limit: 255
-    t.string   "lname",             limit: 255
+    t.string   "name",       limit: 255
+    t.text     "addr1",      limit: 65535
+    t.text     "addr2",      limit: 65535
+    t.text     "addr3",      limit: 65535
+    t.text     "addr4",      limit: 65535
+    t.string   "city",       limit: 255
+    t.string   "state",      limit: 255
+    t.string   "country",    limit: 255
+    t.integer  "postcode",   limit: 4
+    t.integer  "contactno",  limit: 4
+    t.string   "email",      limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "permalink",  limit: 255
+    t.string   "lname",      limit: 255
     t.date     "bdate"
   end
 
-  add_index "customers", ["address_detail_id"], name: "index_customers_on_address_detail_id", using: :btree
   add_index "customers", ["lname"], name: "index_customers_on_lname", using: :btree
   add_index "customers", ["permalink"], name: "index_customers_on_permalink", using: :btree
 

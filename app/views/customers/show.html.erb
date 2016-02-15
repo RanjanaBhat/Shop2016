@@ -1,3 +1,4 @@
+<br/><br/><br/>
 <!DOCTYPE html>
 <html lang='en'>
 <%- model_class = Customer -%>
@@ -35,6 +36,15 @@
   <dd><%= @customer.email %></dd>
 </dl>
 </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+<dl class="dl-horizontal">
+  <dt><strong><%#= model_class.human_attribute_name(:city) %></strong></dt>
+  <dd><%#= @customer.address_detail.city %></dd>
+</dl>
+
+  </div>
 </div>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               customers_path, :class => 'btn btn-default'  %>

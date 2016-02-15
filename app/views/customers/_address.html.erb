@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang='en'>
 <!--Address Form-->
-<%#= f.fields_for :address_details do |addres| %>
+<%= form_for @customer, :html => { :class => "form-horizontal customer" } do |f| %>
+<%= f.fields_for :address_details do |addres| %>
+
   <div class="col-md-4">
-    <%= f.label :address1, :class => 'control-label col-md-2'%>
-    <%= f.text_field :line1, :class => 'form-control' %>
+    <%= addres.label :address1, :class => 'control-label col-md-2'%>
+    <%= addres.text_field :line1, :class => 'form-control' %>
     <span class="help-block with-errors"></span>
   </div>
   <div class="col-md-4">
-    <%= f.label :address2, :class => 'control-label col-md-2'%>
-    <%= f.text_field :line2, :class => 'form-control'%>
+    <%= addres.label :address2, :class => 'control-label col-md-2'%>
+    <%= addres.text_field :line2, :class => 'form-control'%>
     <span class="help-block with-errors"></span>  
   </div>
   <div class="col-md-4">    
-    <%= f.label :city, :class => 'control-label col-md-2' %>
-    <%= f.text_field :city, :class => 'form-control'%>
+    <%= addres.label :city, :class => 'control-label col-md-2' %>
+    <%= addres.text_field :city, :class => 'form-control'%>
     <span class="help-block with-errors"></span>
   </div>
   <div class="col-md-4">
-    <%= f.label :state, :class => 'control-label col-md-2' %>
-    <%= f.text_field :state, :class => 'form-control'%>
+    <%= addres.label :state, :class => 'control-label col-md-2' %>
+    <%= addres.text_field :state, :class => 'form-control'%>
     <span class="help-block with-errors"></span>
   </div>
   <div class="col-md-4">
-    <%= f.label :country, :class => 'control-label col-md-2' %>
-    <%= f.text_field :country, :class => 'form-control'%>
+    <%= addres.label :country, :class => 'control-label col-md-2' %>
+    <%= addres.text_field :country, :class => 'form-control'%>
     <span class="help-block with-errors"></span>
   </div>
   <div class="col-md-2 ">
-    <%= f.label :postcode, :class => 'control-label col-md-2' %>
-    <%= f.text_field :postcode, :class => 'form-control'%>
+    <%= addres.label :postcode, :class => 'control-label col-md-2' %>
+    <%= addres.text_field :postcode, :class => 'form-control'%>
     <span class="help-block with-errors"></span>
   </div>
-<%#end%>
+<%end%>
+<%end%>
 </html>

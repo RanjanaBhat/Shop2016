@@ -11,6 +11,10 @@ class Product < ActiveRecord::Base
 	 	permalink
 	 end
 
+	 def self.search(search)
+  		where("name LIKE ?", "%#{search}%") 
+  		
+	end
 	 
 
 	 #has_attached_file :photo, :styles => 
