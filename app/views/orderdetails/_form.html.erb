@@ -124,59 +124,53 @@
           <div class="panel panel-default">
             <div class="panel-heading">Product Details</div>
               <div class="panel-body">
-                <%#= f.fields_for :products do |p| %>
-                
-                  <%#= p.label :SKU, :class => 'control-label col-lg-2' %>
-                  <%#= f.text_field :SKU, id: 'input', :class => 'form-control', :required => true %>
-                <%= form_tag(products_path, :method => "get", id: "search-form") do %>
-                  <%= text_field_tag :search, params[:search], placeholder: "Search Products" %>
-                    <%= submit_tag "Search" %>
-                <% end %>
-                
-    <!--
-    <div class="col-md-2">
-    <%#= f.label :SKU, :class => 'control-label col-lg-2' %>
-      <%#= f.text_field :SKU, id: 'input', :class => 'form-control', :required => true %>
-      </div>
-      <div class="col-md-2">
-      <%#= f.label :name, :class => 'control-label col-lg-2' %>
-      <%#= f.text_field :product_id, id: 'name', :class => 'form-control', :required => true %>
-      </div>
-      <div class="col-md-2">
-      <%#= f.label :company, :class => 'control-label col-lg-2' %>
-      <%#= f.text_field :product_id, id: 'company', :class => 'form-control', :required => true%>
-      </div>
-      -->
-
-      <!--Script
-      <script>
-$("#input").keyup(function(){
-var  x = document.getElementById("input").value;
-$.ajax({
-type: 'GET',
-url:  "/products/" + x,
-data: {id: x},
-dataType: 'json',
-
-success: function(r){
-v = r['variant'];
-console.log(v)
-$("#SKU").val(r['SKU']);
-$("#name").val(r['name'])
-$("#company").val(r['company']);
-}
-});
-});
-</script>
-END-->
-                <div class="form-group">
-                  <%#= f.label :product, :class => 'control-label col-lg-2' %>
-                  <div class="col-lg-10">
-                    <%# Product.all.each do |t| %>
-                    <%#= select_tag(:product_ids, t.id, @orderdetail.products.include?(t), :name => 'orderdetail[product_ids][]') %>
-                    <%#= t.name %>
-                    <%#= collection_select(:product,:product_id,@products,:id,:name) %>
-                    <%= f.select :pname, options_for_select(@products.collect{ |p| [p.name, p.name] }) %>
+                <%= f.fields_for :products do |p| %>
+              <div class="col-md-2">
+                <%= p.label :SKU, :class => 'control-label col-md-2' %>
+                <%= p.text_field :SKU, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-2 col-md-push-1">
+                <%= p.label :name, :class => 'control-label col-md-2' %>
+                <%= p.text_field :name, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>  
+              </div>
+              <div class="col-md-1 col-md-push-1">    
+                <%= p.label :quantity, :class => 'control-label col-md-1' %>
+                <%= p.number_field :quantity, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-2 col-md-push-1">
+                <%= p.label :company, :class => 'control-label col-md-2' %>
+                <%= p.text_field :company, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-4 col-md-push-1">
+                <%= p.label :cost_price, :class => 'control-label col-md-4' %>
+              </div>
+                <div class="col-md-2 col-md-push-1">
+                <%= p.text_field :cost_price, :class => 'form-control', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+              <div class="col-md-4 ">
+                <%= p.label :retail_price, :class => 'control-label col-md-4' %>
+                <div class="col-md-6 ">
+                <%= p.text_field :retail_price,  :class => 'form-control col-lg-2', :required => true %>
+                <span class="help-block with-errors"></span>
+              </div>
+            </div>
+              <div class="col-md-4 ">
+              <%= f.label :product_image, :class => 'control-label col-lg-4' %>
+                    <div class="col-lg-10">
+                      <%= f.file_field :photo,:required => true  %>
+                    </div>
+                    <span class="help-block with-errors"></span>
+              </div>
+              <% end %>
+                    <%#= f.text_field :pname %>
+                    <%#= f.select "products", options_from_collection_for_select(Product.all, 'id', 'name'), :multiple => true %>
+                    <%#= f.submit %>
+                    <%= f.select :pname, options_for_select(@products.collect{ |p| [p.name, p.name] }),prompt: "Select"%>
                     <%# end %>
                   </div>
                 </div> 
@@ -184,9 +178,6 @@ END-->
             
           </div>
         </div>
-  
-  </div>
-</div>
 <div class="row">
   <div class="col-md-offset-1 col-md-2"><input type="submit" value="Create Order" class="btn btn-primary btn-block btn-lg">
   </div>

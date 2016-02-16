@@ -6,10 +6,10 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
-<table class="table table-hover">
+<table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <%#= model_class.human_attribute_name(:id) %>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:birthday) %></th>
       <th><%= model_class.human_attribute_name(:addr1) %></th>
@@ -27,8 +27,8 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= link_to customer.id, customer_path(customer) %></td>
-        <td><%= customer.name %></td>
+        <%#= link_to customer.id, customer_path(customer) %>
+        <td><%= link_to customer.name, customer_path(customer) %></td>
         <td><%= customer.bdate %></td>
         <% customer.address_details.each do |addres| %>
         <td><%= addres.line1 %></td>

@@ -6,6 +6,7 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 <div class="panel panel-default">
+  <div class="panel-heading custom_class" style="background-color:lightblue">Customer Personal Details</div>
   <div class="panel-body">
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:firstname) %>:</strong></dt>
@@ -38,12 +39,24 @@
 </div>
 </div>
 <div class="panel panel-default">
-  <div class="panel-body">
-<dl class="dl-horizontal">
-  <dt><strong><%#= model_class.human_attribute_name(:city) %></strong></dt>
-  <dd><%#= @customer.address_detail.city %></dd>
-</dl>
-
+  <div class="panel-heading custom_class" style="background-color:lightblue">Customer Address Details</div>
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+      <% @customer.address_details.each do |addres| %>
+        <dt><strong><%= model_class.human_attribute_name(:line_1) %></strong></dt>
+        <dd><%= addres.line1 %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:line_2) %></strong></dt>
+        <dd><%= addres.line2 %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:city) %></strong></dt>
+        <dd><%= addres.city %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:state) %></strong></dt>
+        <dd><%= addres.state %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:country) %></strong></dt>
+        <dd><%= addres.country %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:postcode) %></strong></dt>
+        <dd><%= addres.postcode %></dd>
+      <% end %>
+    </dl>
   </div>
 </div>
 <%= link_to t('.back', :default => t("helpers.links.back")),

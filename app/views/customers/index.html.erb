@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <% will_paginate @customers %>
 <br/><br/><br/><br/><br/><br/>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_customer_path,
+            :class => 'btn btn-primary' %>
 <%- model_class = Customer -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -15,8 +19,6 @@
       <th><%= model_class.human_attribute_name(:birthday) %></th>
       <th><%= model_class.human_attribute_name(:addr1) %></th>
       <th><%= model_class.human_attribute_name(:addr2) %></th>
-      <th><%#= model_class.human_attribute_name(:addr3) %></th>
-      <th><%#= model_class.human_attribute_name(:addr4) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
       <th><%= model_class.human_attribute_name(:state) %></th>
       <th><%= model_class.human_attribute_name(:country) %></th>
@@ -36,8 +38,6 @@
         <% customer.address_details.each do |addres| %>
         <td><%= addres.line1 %></td>
         <td><%= addres.line2 %></td>
-        <td><%#= addres.addr3 %></td>
-        <td><%#= addres.addr4 %></td>
         <td><%= addres.city %></td>
         <td><%= addres.state %></td>
         <td><%= addres.country %></td>
@@ -60,10 +60,6 @@
   </tbody>
 </table>
 <div class="digg-pagination">
-    <%= will_paginate @customers,renderer: BootstrapPagination::Rails %>
-  </div>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_customer_path,
-            :class => 'btn btn-primary' %>
+  <%= will_paginate @customers,renderer: BootstrapPagination::Rails %>
+</div>
 </html>

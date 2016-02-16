@@ -10,13 +10,6 @@ class Product < ActiveRecord::Base
 	 def to_param
 	 	permalink
 	 end
-
-	 def self.search(search)
-  		where("name LIKE ?", "%#{search}%") 
-  		
-	end
-	 
-
 	 #has_attached_file :photo, :styles => 
          # { :medium => "300x300>", :thumb => "100x100>" }
 	 #validates_attachment_content_type :image, :content_type => ["image/jpg","image/jpeg", "image/png", "image/gif"]

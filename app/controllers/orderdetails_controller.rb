@@ -22,6 +22,7 @@ class OrderdetailsController < ApplicationController
   def new
     @orderdetail = Orderdetail.new
     @products = Product.all
+    @orderdetail.products.build
   end
 
   # GET /orderdetails/1/edit
@@ -78,6 +79,6 @@ class OrderdetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orderdetail_params
-      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name)
+      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name,products_attributes: [:id,:SKU,:name,:company,:cost_price,:retail_price,:photo,:quantity])
     end
 end

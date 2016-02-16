@@ -15,60 +15,75 @@
       </div>
     </div>
   <% end %>
-  <div class="form-group">
-    <%= f.label :line1, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :line1, :class => 'form-control', :required => true %>
-      </div>
-      <span class="help-block with-errors"></span>
+  <div class="row">
+    <div class=" col-md-6 col-md-push-3  ">
+      <form data-toggle="validator" role="form">
+        <div class="row">
+          <div class="panel panel-default">
+            <div class="panel-heading">Address Details</div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <%= f.label :line1, :class => 'control-label col-lg-2' %>
+                  <div class="col-md-8">
+                    <%= f.text_field :line1, :class => 'form-control', :required => true %>
+                  </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :line2, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-8">
+                      <%= f.text_field :line2, :class => 'form-control',:required => true %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :city, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-4">
+                      <%= f.text_field :city, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :state, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-4">
+                      <%= f.text_field :state, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :postcode, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-4">
+                      <%= f.text_field :postcode, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :country, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-4">
+                      <%= f.text_field :country, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                  <%= f.label :customer_id, :class => 'control-label col-lg-2' %>
+                    <div class="col-md-2">
+                      <%= f.text_field :customer_id, :class => 'form-control',:required => true  %>
+                    </div>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+            
+          </div>
+       </div>
+      
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :line2, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :line2, :class => 'form-control', :required => true %>
-      </div>
-      <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :city, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :city, :class => 'form-control', :required => true %>
-      </div>
-      <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :state, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :state, :class => 'form-control', :required => true %>
-      </div>
-      <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :postcode, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :postcode, :class => 'form-control', :required => true %>
-      </div>
-      <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :country, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :country, :class => 'form-control', :required => true %>
-      </div>
-        <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <%= f.label :customer_id, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :customer_id, :class => 'form-control', :required => true %>
-      </div>
-      <span class="help-block with-errors"></span>
-  </div>
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                address_details_path, :class => 'btn btn-default' %>
+  <div class="row">
+    <div class="col-md-offset-4 col-md-2">
+        <input type="submit" value="Create Address" class="btn btn-primary btn-block btn-lg">
+    </div>
+    <div class="  col-md-2">
+      <%= link_to 'Cancel', address_details_path, class: "btn btn-danger btn-block btn-lg" %>
     </div>
   </div>
 <% end %>

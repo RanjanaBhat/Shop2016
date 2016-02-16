@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215063233) do
+ActiveRecord::Schema.define(version: 20160216121137) do
 
   create_table "address_details", force: :cascade do |t|
     t.text     "line1",       limit: 65535
@@ -109,8 +109,10 @@ ActiveRecord::Schema.define(version: 20160215063233) do
     t.integer  "photo_file_size",    limit: 4
     t.datetime "photo_updated_at"
     t.string   "permalink",          limit: 255
+    t.integer  "orderdetail_id",     limit: 4
   end
 
+  add_index "products", ["orderdetail_id"], name: "index_products_on_orderdetail_id", using: :btree
   add_index "products", ["permalink"], name: "index_products_on_permalink", using: :btree
 
   create_table "users", force: :cascade do |t|

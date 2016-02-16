@@ -1,8 +1,7 @@
 class Customer < ActiveRecord::Base
-	has_many :address_details
-	has_many :orderdetails
+	has_many :address_details, :dependent => :destroy
+	has_many :orderdetails, :dependent => :destroy
 	accepts_nested_attributes_for :address_details
-	accepts_nested_attributes_for  :orderdetails
 	has_permalink :name
 	def to_param
   	permalink
