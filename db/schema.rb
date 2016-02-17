@@ -11,36 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216121137) do
+ActiveRecord::Schema.define(version: 20160217135406) do
 
   create_table "address_details", force: :cascade do |t|
-    t.text     "line1",       limit: 65535
-    t.text     "line2",       limit: 65535
-    t.string   "city",        limit: 255
-    t.string   "state",       limit: 255
-    t.integer  "postcode",    limit: 4
-    t.string   "country",     limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "customer_id", limit: 4
+    t.text     "line1",          limit: 65535
+    t.text     "line2",          limit: 65535
+    t.string   "city",           limit: 255
+    t.string   "state",          limit: 255
+    t.integer  "postcode",       limit: 4
+    t.string   "country",        limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "customer_id",    limit: 4
+    t.integer  "orderdetail_id", limit: 4
   end
 
   add_index "address_details", ["customer_id"], name: "index_address_details_on_customer_id", using: :btree
+  add_index "address_details", ["orderdetail_id"], name: "index_address_details_on_orderdetail_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.text     "addr1",      limit: 65535
-    t.text     "addr2",      limit: 65535
-    t.text     "addr3",      limit: 65535
-    t.text     "addr4",      limit: 65535
-    t.string   "city",       limit: 255
-    t.string   "state",      limit: 255
-    t.string   "country",    limit: 255
-    t.integer  "postcode",   limit: 4
     t.integer  "contactno",  limit: 4
     t.string   "email",      limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "permalink",  limit: 255
     t.string   "lname",      limit: 255
     t.date     "bdate"
@@ -50,15 +44,18 @@ ActiveRecord::Schema.define(version: 20160216121137) do
   add_index "customers", ["permalink"], name: "index_customers_on_permalink", using: :btree
 
   create_table "line_items", force: :cascade do |t|
-    t.string   "SKU",         limit: 255
-    t.text     "description", limit: 65535
-    t.integer  "quantity",    limit: 4
-    t.decimal  "price",                     precision: 10
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.integer  "product_id",  limit: 4
+    t.string   "SKU",            limit: 255
+    t.text     "description",    limit: 65535
+    t.integer  "quantity",       limit: 4
+    t.decimal  "price",                        precision: 10
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "product_id",     limit: 4
+    t.integer  "orderdetail_id", limit: 4
+    t.string   "name",           limit: 255
   end
 
+  add_index "line_items", ["orderdetail_id"], name: "index_line_items_on_orderdetail_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
   create_table "orderdetails", force: :cascade do |t|
@@ -84,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160216121137) do
     t.string   "name",                 limit: 255
     t.string   "pname",                limit: 255
     t.string   "SKU",                  limit: 255
+    t.string   "email",                limit: 255
   end
 
   add_index "orderdetails", ["customer_id"], name: "index_orderdetails_on_customer_id", using: :btree

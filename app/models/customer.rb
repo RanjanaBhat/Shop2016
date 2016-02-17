@@ -4,6 +4,8 @@ class Customer < ActiveRecord::Base
 	accepts_nested_attributes_for :address_details
 	has_permalink :name
 	def to_param
-  	permalink
-  end
+  		permalink
+  	end
+  	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@akamai\.com\z/i
+  	validates_uniqueness_of :email
 end

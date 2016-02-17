@@ -22,6 +22,10 @@ gem 'has_permalink'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
+gem 'rails4-autocomplete'
+
+# jQuery UI dependency.
+gem 'jquery-ui-rails'
 
 
 gem 'paperclip','~> 4.2'

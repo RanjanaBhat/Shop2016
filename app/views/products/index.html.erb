@@ -44,6 +44,7 @@
         <td><%= product.cost_price %></td>
         <td><%= product.retail_price %></td>
         <td><%= image_tag(product.photo, :size => "100x100", :alt => "Picture") %></td>
+        <!--<iframe src=<%#= @certificate.certificate_pdf %> width="600" height="780" style="border: none;"> </iframe>-->
         <td><%=l product.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

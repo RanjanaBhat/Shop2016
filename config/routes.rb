@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :customers
   resources :orderdetails
   resources :line_items
-  resources :products
+  resources :products do    
+      collection do
+        get 'product_show'
+      end
+    end
   resources :address_details
   default_url_options :host => "anc.ranjana@gmail.com"
 
@@ -10,7 +14,9 @@ Rails.application.routes.draw do
   resources :dashboard
 
   root to: 'home#index'
-
+  resources :orderdetails do
+  get :autocomplete_product_name, on: :collection
+end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

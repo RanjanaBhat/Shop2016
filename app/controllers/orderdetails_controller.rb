@@ -1,20 +1,22 @@
 class OrderdetailsController < ApplicationController
   before_action :set_orderdetail, only: [:show, :edit, :update, :destroy]
-
+  #autocomplete :orderdetail
   # GET /orderdetails
   # GET /orderdetails.json
   def index
     @orderdetails = Orderdetail.all
     @products = Product.all
+
     #@products = Product.search(params[:search])
     @orderdetails = Orderdetail.paginate(:page => params[:page], :per_page => 5) 
     #@address_detail = Address_detail.all
   end
-
+  autocomplete :product, :name, full: true
   # GET /orderdetails/1
   # GET /orderdetails/1.json
   def show
      @products = Product.all
+
      
   end
 
@@ -22,7 +24,11 @@ class OrderdetailsController < ApplicationController
   def new
     @orderdetail = Orderdetail.new
     @products = Product.all
-    @orderdetail.products.build
+    @customers = Customer.all
+    #@orderdetail.products.build
+    @orderdetail.build_address_detail
+    @orderdetail.build_customer
+    @orderdetail.line_items.build
   end
 
   # GET /orderdetails/1/edit
@@ -34,6 +40,7 @@ class OrderdetailsController < ApplicationController
   # POST /orderdetails.json
   def create
     @orderdetail = Orderdetail.new(orderdetail_params)
+    @products = Product.all
 
     respond_to do |format|
       if @orderdetail.save
@@ -49,6 +56,7 @@ class OrderdetailsController < ApplicationController
   # PATCH/PUT /orderdetails/1
   # PATCH/PUT /orderdetails/1.json
   def update
+    @products = Product.all
     respond_to do |format|
       if @orderdetail.update(orderdetail_params)
         format.html { redirect_to @orderdetail, notice: 'Orderdetail was successfully updated.' }
@@ -79,6 +87,6 @@ class OrderdetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orderdetail_params
-      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name,products_attributes: [:id,:SKU,:name,:company,:cost_price,:retail_price,:photo,:quantity])
+      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name,address_detail_attributes: [:id,:line1,:line2,:city,:postcode,:state,:country],line_items_attributes: [:name,:id,:product_id,:SKU,:description,:price,:quantity],customer_attributes: [:id,:name,:bdate,:contactno,:email])
     end
 end
