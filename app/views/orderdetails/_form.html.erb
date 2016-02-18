@@ -8,65 +8,123 @@
         <div class="panel panel-default">
           <div class="panel-heading">Customer Details</div>
             <div class="panel-body">
-              <!--Address Form-->
-            <%= f.fields_for :customer do |c| %>
-              <div class="col-md-2">
-                <%= c.label :name, :class => 'control-label col-lg-2' %>
-                <%= c.text_field :name, id: 'input', :class => 'form-control', :required => true %>
-              </div>
-              <div class="col-md-2">
-                <%= c.label :bdate, :class => 'control-label col-lg-2' %>
-                <%= c.text_field :bdate, id: 'bdate', :class => 'form-control', :required => true %>
-              </div>
-              <div class="col-md-2">
-                <%= c.label :phone, :class => 'control-label col-lg-2' %>
-                <%= c.text_field :contactno, id: 'contactno', :class => 'form-control', :required => true%>
-              </div>
-              <div class="col-md-2">
-                <%= c.label :email, :class => 'control-label col-lg-2' %>
-                <%= c.text_field :email, id: 'email', :class => 'form-control', :required => true %>
-              </div>
+              <!--Customer Form-->
+              <%= f.fields_for :customer do |c| %>
+              <%#= f.hidden_field :customer_id, :value => @customer.id %>
+              <%#= c.hidden_field :customer_id, id: cid %>
+
+
+
+
+              <%#= @customer.id %>
+                <div class="col-md-4">
+                  <%#= c.label :Select_Email, :class => 'control-label col-lg-2' %>
+                  <%= c.select :email, options_for_select(@customers.collect{ |a| [a.email, a.email] }),{prompt: "Select Email"},{ id: "abc"}%>
+                </div>
+                <script>
+                $("#abc").change(function(){
+                //console.log($('#input1').text('#xyz option:selected').value);
+                var  x = document.getElementById("abc").value;
+                console.log(x)
+                //$("#2").val(x)
+                $.ajax({
+                type: 'GET',
+                url:  "/customers/customer_show",
+                //url: "/address_details/address_show",
+                data: {email: escape(x)},
+                dataType: 'json',
+                success: function(r){
+                v = r['variant'];
+                console.log(v)
+                $("#name").val(r['name']);
+                $("#bdate").val(r['bdate']);
+                $("#contactno").val(r['contactno']);
+                $("#email").val(r['email']);
+                //$("#street").val(r['street']);
+                //$("#area").val(r['area']);
+                //$("#city").val(r['city']);
+                //$("#state").val(r['state']);
+                //$("#country").val(r['country']);
+                //$("#postcode").val(r['postcode']);
+                //$("#cid").val(r['id']);
+                }
+                });
+                });
+                </script>
+                
+
+
+
+
+
+                <div class="col-md-12 col-md-6">
+                <div class="col-md-2">
+                  <%= c.label :name, :class => 'control-label col-lg-2' %>
+                  <%= c.text_field :name, id: 'name', :class => 'form-control', :required => true %>
+                </div>
+                <div class="col-md-2">
+                  <%= c.label :bdate, :class => 'control-label col-lg-2' %>
+                  <%= c.text_field :bdate, id: 'bdate', :class => 'form-control', :required => true %>
+                </div>
+                <div class="col-md-2">
+                  <%= c.label :contactno, :class => 'control-label col-lg-2' %>
+                  <%= c.text_field :contactno, id: 'contactno', :class => 'form-control', :required => true%>
+                </div>
+                <div class="col-md-2">
+                  <%= c.label :email, :class => 'control-label col-lg-2' %>
+                  <%= c.text_field :email, id: 'email', :class => 'form-control', :required => true %>
+                </div>
+                </div>
+                <%# puts "#{c_id}"%>
               <% end %>
             </div>
-          </div>
-              <!--Address Form-->
-              <div class="panel panel-default">
-              <div class="panel-heading">Address Details</div>
+
+        </div>
+
+        <!--Address Form-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Address Details</div>
             <div class="panel-body">
-            <%= f.fields_for :address_detail do |addres| %>
-              <div class="col-md-4">
-                <%= addres.label :Street, :class => 'control-label col-md-2' %>
-                <%= addres.text_field :line1, :class => 'form-control' %>
-                <span class="help-block with-errors"></span>
-              </div>
-              <div class="col-md-4">
-                <%= addres.label :Area, :class => 'control-label col-md-2' %>
-                <%= addres.text_field :line2, :class => 'form-control'%>
-                <span class="help-block with-errors"></span>  
-              </div>
-              <div class="col-md-4 ">    
-                <%= addres.label :city, :class => 'control-label col-md-2' %>
-                <%= addres.text_field :city, :class => 'form-control' %>
-                <span class="help-block with-errors"></span>
-              </div>
-              <div class="col-md-4">
-                <%= addres.label :state, :class => 'control-label col-md-2' %>
-                <%= addres.text_field :state, :class => 'form-control' %>
-                <span class="help-block with-errors"></span>
-              </div>
-              <div class="col-md-4">
-                <%= addres.label :country, :class => 'control-label col-md-2' %>
-                <%= addres.text_field :country, :class => 'form-control' %>
-                <span class="help-block with-errors"></span>
-              </div>
-              <div class="col-md-2 ">
-                <%= addres.label :postcode, :class => 'control-label col-md-2' %>
-                <%= addres.text_field :postcode, :class => 'form-control' %>
-                <span class="help-block with-errors"></span>
-              </div>
+
+              <%= f.fields_for :address_detail do |addres| %>
+              <%#= addres.hidden_field :customer_id, :value => @customer.id %>
+              <%# puts "#{customer.id}"%>
+                <div class="col-md-4">
+                  <%= addres.label :Street, :class => 'control-label col-md-2' %>
+                  <%= addres.text_field :line1, :class => 'form-control' %>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="col-md-4">
+                  <%= addres.label :Area, :class => 'control-label col-md-2' %>
+                  <%= addres.text_field :line2, :class => 'form-control'%>
+                  <span class="help-block with-errors"></span>  
+                </div>
+                <div class="col-md-4 ">    
+                  <%= addres.label :city, :class => 'control-label col-md-2' %>
+                  <%= addres.text_field :city, :class => 'form-control' %>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="col-md-4">
+                  <%= addres.label :state, :class => 'control-label col-md-2' %>
+                  <%= addres.text_field :state, :class => 'form-control' %>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="col-md-4">
+                  <%= addres.label :country, :class => 'control-label col-md-2' %>
+                  <%= addres.text_field :country, :class => 'form-control' %>
+                  <span class="help-block with-errors"></span>
+                </div>
+                <div class="col-md-2 ">
+                  <%= addres.label :postcode, :class => 'control-label col-md-2' %>
+                  <%= addres.text_field :postcode, :class => 'form-control' %>
+                  <span class="help-block with-errors"></span>
+                </div>
               <%end%>
+              <%# end %>
             </div>
-          </div>
+
+        </div>
+        <!--
         <script>
         $("#input").keyup(function(){
         var  x = document.getElementById("input").value;
@@ -85,7 +143,7 @@
         }
         });
         });
-        </script>
+        </script> -->
         <div class="panel panel-default">
           <div class="panel-heading">Order Details</div>
             <div class="panel-body">
@@ -109,138 +167,130 @@
                   <div class="col-md-4 col-md-pull-4">
                     <%= f.date_select :delivery_date, :class => 'form-control', :required => true  %>
                   </div>
-                <span class="help-block with-errors"></span>
+                  <span class="help-block with-errors"></span>
               </div>
               <div class="form-group">
                 <%= f.label :delivery_slot, :class => 'control-label col-lg-2' %>
                   <div class="col-md-6">
                     <%=f.select "delivery_slot", options_for_select([ "Morning", "Noon", "Evening", "Night" ]), prompt: "Select", :class => 'form-control', :required => true  %>
                   </div>
-                <span class="help-block with-errors"></span>
+                  <span class="help-block with-errors"></span>
               </div>
               <div class="form-group">
                 <%= f.label :carrier, :class => 'control-label col-lg-2' %>
                   <div class="col-md-6">
                     <%= f.select "carrier", options_for_select([ "FBA", "PDF", "SIP", "DIP" ]),prompt: "Select", :class => 'form-control', :required => true  %>
                   </div>
-                <span class="help-block with-errors"></span>
+                  <span class="help-block with-errors"></span>
               </div>
               <div class="form-group">
                 <%= f.label :order_currency, :class => 'control-label col-lg-2' %>
                   <div class="col-md-6">
                     <%=  f.select "order_currency", options_for_select([ "USD", "INR", "EUR", "AFN", "AUD", "JPY"]),prompt: "Select", :class => 'form-control', :required => true  %>
                   </div>
-                <span class="help-block with-errors"></span>
+                  <span class="help-block with-errors"></span>
               </div>
               <div class="form-group">
                 <%= f.label :order_value, :class => 'control-label col-lg-2' %>
                   <div class="col-md-2">
                     <%= f.number_field :order_value, :class => 'form-control', :required => true  %>
                   </div>
-                <span class="help-block with-errors"></span>
+                  <span class="help-block with-errors"></span>
               </div>
               <div class="form-group">
                 <%= f.label :payment_gateway, :class => 'control-label col-lg-2' %>
                   <div class="col-md-6">
                     <%=f.select "payment_collection", options_for_select([ "PayU Money  ", " MasterCard Payment Gateway Services ", "NETbilling", "PayDollar", "PayU India", "DebitCard", "CreditCard"]),prompt: "Select", :class => 'form-control', :required => true  %>
                   </div>
-                <span class="help-block with-errors"></span>
+                  <span class="help-block with-errors"></span>
               </div>
               <div class="form-group">
                 <%= f.label :special_instruction, :class => 'control-label col-lg-2' %>
                   <div class="col-md-6">
                     <%= f.text_area :special_instruction, :class => 'form-control', :required => true ,size: "50x5"  %>
                   </div>
-                <span class="help-block with-errors"></span>
+                  <span class="help-block with-errors"></span>
               </div>
               <div class="form-group">
                 <%= f.label :invoice, :class => 'control-label col-lg-2' %>
                   <div class="col-md-6">
                     <%= f.file_field :invoice,:required => true  %>
                   </div>
-                <span class="help-block with-errors"></span>
+                  <span class="help-block with-errors"></span>
               </div>
             </div>
-          </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading">Product Details</div>
-              <div class="panel-body">
-                  <%= f.fields_for :line_items do |p| %>
-                  <%= p.hidden_field :product_id, id: 5 %>
-                <%#= f.input :product_id, as: :hidden %>
-                <%#= f.autocomplete_field :pname, autocomplete_product_name_orderdetails_path%>
-                
-                    <%#= f.text_field :pname %>
-                    <%#= f.select "products", options_from_collection_for_select(Product.all, 'id', 'name'), :multiple => true %>
-                    <%#= f.submit %>
+        </div>
+        <!--Product Form-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Product Details</div>
+            <div class="panel-body">
+              <%= f.fields_for :line_items do |p| %>
+                <%= p.hidden_field :product_id, id: 5 %>
                   <div class="col-md-4">
-                    <%= p.select :name, options_for_select(@products.collect{ |a| [a.name, a.name] }),{prompt: "Select"},{ id: "xyz"}%>
+                    <%= p.select :name, options_for_select(@products.collect{ |a| [a.name, a.name] }),{prompt: "Select Product"},{ id: "xyz"}%>
+                  </div>
+                  <script>
+                  $("#xyz").change(function(){
+                  //console.log($('#input1').text('#xyz option:selected').value);
+                  var  x = document.getElementById("xyz").value;
+                  console.log(x)
+                  //$("#2").val(x)
+                  $.ajax({
+                  type: 'GET',
+                  url:  "/products/product_show",
+                  data: {name: x},
+                  dataType: 'json',
+                  success: function(r){
+                  v = r['variant'];
+                  console.log(v)
+                  $("#1").val(r['name']);
+                  $("#2").val(r['SKU']);
+                  $("#3").val(r['company']);
+                  $("#4").val(r['retail_price']);
+                  $("#5").val(r['id']);
+                  var price = $("#quantity").data("price");
+                  }
+                  });
+                  });
+                  </script>
+                  <div class="col-md-12 col-md-6">
+                    <div class="col-md-2">
+                      <%= p.label :name, :class => 'control-label col-lg-2' %>
+                      <%= p.text_field :name, id: 1, :class => 'form-control', :required => true %>
                     </div>
-                    <%#= link_to 'Add', render :partial => "orderdetails/order" %>
-                    
-                    <script>
-        $("#xyz").change(function(){
-          //console.log($('#input1').text('#xyz option:selected').value);
-       var  x = document.getElementById("xyz").value;
-       console.log(x)
-       //$("#2").val(x)
-        $.ajax({
-        type: 'GET',
-        url:  "/products/product_show",
-        data: {name: x},
-        dataType: 'json',
-        success: function(r){
-        v = r['variant'];
-        console.log(v)
-        $("#1").val(r['name']);
-        $("#2").val(r['SKU']);
-        $("#3").val(r['company']);
-        $("#4").val(r['retail_price']);
-        $("#5").val(r['id']);
-        }
-        });
-        });
-        </script>
-        
-            <div class="col-md-12">
-              <div class="col-md-2">
-                <%= p.label :name, :class => 'control-label col-lg-2' %>
-                <%= p.text_field :name, id: 1, :class => 'form-control', :required => true %>
-              </div>
-              <div class="col-md-2">
-                <%= p.label :SKU, :class => 'control-label col-lg-2' %>
-                <%= p.text_field :SKU, id: 2, :class => 'form-control', :required => true %>
-              </div>
-              <div class="col-md-2">
-                <%= p.label :Description, :class => 'control-label col-lg-2' %>
-                <%= p.text_field :description, id: 3, :class => 'form-control', :required => true %>
-              </div>
-              <div class="col-md-4">
-                <%= p.label :price, :class => 'control-label col-lg-4' %>
-              </div>
-              <div class="col-md-4">
-                <%= p.text_field :price, id: 4, :class => 'control-label col-lg-4', :required => true %>
+                    <div class="col-md-2">
+                      <%= p.label :SKU, :class => 'control-label col-lg-2' %>
+                      <%= p.text_field :SKU, id: 2, :class => 'form-control', :required => true %>
+                    </div>
+                    <div class="col-md-2">
+                      <%= p.label :Description, :class => 'control-label col-lg-2' %>
+                      <%= p.text_field :description, id: 3, :class => 'form-control', :required => true %>
+                    </div>
+                    <div class="col-md-2">
+                      <%= p.label :price, :class => 'control-label col-lg-2' %> 
+                      <%= p.text_field :price, id: 4, :class => 'control-label ', :required => true %>
+                    </div>
+                    <div class="col-md-4">
+                      <%= p.label :quantity, :class => 'control-label col-lg-4' %>
+                    </div>
+                    <div class="col-md-4 ">
+                      <%= p.text_field :quantity, :class => 'control-label col-lg-4', :required => true %>
+                    </div>
+                    <div class="col-md-2">
+                      <%#= p.label :price, :class => 'control-label col-lg-2' %> 
+                      <%#= :quantity * :price %>
+                    </div>
+                  </div> 
+                  
+              <% end %> 
             </div>
-            <div class="col-md-6">
-                <%= p.label :quantity, :class => 'control-label col-lg-4' %>
-              </div>
-              <div class="col-md-4 col-md-pull-4">
-                <%= p.text_field :quantity, :class => 'control-label col-lg-4', :required => true %>
-            </div>
-            <% end %>
-
-            <div class="col-md-2">
-            <!--<button id="hit" type="button" class="btn btn-success" name="">Save</button>-->
-          </div>
-            </div> 
-          </div>
             
         </div>
       </div>
 
-    </div>
   </div>
+</div>
 <div class="row">
   <div class="col-md-offset-1 col-md-2"><input type="submit" value="Create Order" class="btn btn-primary btn-block btn-lg">
   </div>

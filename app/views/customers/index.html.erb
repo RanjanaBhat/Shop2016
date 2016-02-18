@@ -3,9 +3,9 @@
 
 <% will_paginate @customers %>
 <br/><br/><br/><br/><br/><br/>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_customer_path,
-            :class => 'btn btn-primary' %>
+<%= link_to new_customer_path, :title => 'New Customer', :rel => 'tooltip', class: "btn btn-primary" do %>
+    <span class="glyphicon glyphicon-new-window"></span>&nbsp;New Customer
+<% end %>
 <%- model_class = Customer -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>

@@ -14,7 +14,18 @@ class Orderdetail < ActiveRecord::Base
 	def to_param
   		permalink
   	end
-  	
+  	#def customer_attributes=(attrs)
+    	#self.customer = Customer.where(attrs).first_or_initialize(attrs) 
+    	#@show_exists_message = !@customer.new_record?
+  	#end
+  	#def subtotals
+  		#items.map do 
+  			#|i| i.subtotal 
+  		#end
+	#end
+	#def total
+  		#subtotals.sum
+	#end
   	
   	#def email
   	#	Orderdetail.try(:email)

@@ -6,7 +6,7 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 <div class="panel panel-default">
-  <div class="panel-heading custom_class" style="background-color:lightblue">Customer Personal Details</div>
+  <div class="panel-heading custom_class" style="background-color:lightblue"><%= @customer.name %>'s Personal Details</div>
   <div class="panel-body">
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:firstname) %>:</strong></dt>
@@ -16,21 +16,21 @@
   <dt><strong><%= model_class.human_attribute_name(:birthday) %>:</strong></dt>
   <dd><%= @customer.bdate %></dd>
   <dt><strong><%#= model_class.human_attribute_name(:addr1) %></strong></dt>
-  <dd><%= @customer.addr1 %></dd>
+  <dd><%#= @customer.addr1 %></dd>
   <dt><strong><%#= model_class.human_attribute_name(:addr2) %></strong></dt>
-  <dd><%= @customer.addr2 %></dd>
+  <dd><%#= @customer.addr2 %></dd>
   <dt><strong><%#= model_class.human_attribute_name(:addr3) %></strong></dt>
-  <dd><%= @customer.addr3 %></dd>
+  <dd><%#= @customer.addr3 %></dd>
   <dt><strong><%#= model_class.human_attribute_name(:addr4) %></strong></dt>
-  <dd><%= @customer.addr4 %></dd>
+  <dd><%#= @customer.addr4 %></dd>
   <dt><strong><%#= model_class.human_attribute_name(:city) %></strong></dt>
-  <dd><%= @customer.city %></dd>
+  <dd><%#= @customer.city %></dd>
   <dt><strong><%#= model_class.human_attribute_name(:state) %></strong></dt>
-  <dd><%= @customer.state %></dd>
+  <dd><%#= @customer.state %></dd>
   <dt><strong><%#= model_class.human_attribute_name(:country) %></strong></dt>
-  <dd><%= @customer.country %></dd>
+  <dd><%#= @customer.country %></dd>
   <dt><strong><%#= model_class.human_attribute_name(:postcode) %></strong></dt>
-  <dd><%= @customer.postcode %></dd>
+  <dd><%#= @customer.postcode %></dd>
   <dt><strong><%= model_class.human_attribute_name(:contactno) %>:</strong></dt>
   <dd><%= @customer.contactno %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
@@ -39,7 +39,7 @@
 </div>
 </div>
 <div class="panel panel-default">
-  <div class="panel-heading custom_class" style="background-color:lightblue">Customer Address Details</div>
+  <div class="panel-heading custom_class" style="background-color:lightblue"><%= @customer.name %>'s Address Details</div>
     <div class="panel-body">
       <dl class="dl-horizontal">
       <% @customer.address_details.each do |addres| %>
@@ -54,7 +54,7 @@
         <dt><strong><%= model_class.human_attribute_name(:country) %></strong></dt>
         <dd><%= addres.country %></dd>
         <dt><strong><%= model_class.human_attribute_name(:postcode) %></strong></dt>
-        <dd><%= addres.postcode %></dd>
+        <dd><%= addres.postcode %></dd></p>
       <% end %>
     </dl>
   </div>

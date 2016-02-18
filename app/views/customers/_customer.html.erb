@@ -9,7 +9,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <%#= model_class.human_attribute_name(:id) %>
+      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:birthday) %></th>
       <th><%= model_class.human_attribute_name(:addr1) %></th>
@@ -20,14 +20,14 @@
       <th><%= model_class.human_attribute_name(:postcode) %></th>
       <th><%= model_class.human_attribute_name(:contactno) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <%#= model_class.human_attribute_name(:created_at) %>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <%#= link_to customer.id, customer_path(customer) %>
+        <td><%= link_to customer.id, customer_path(customer) %></td>
         <td><%= link_to customer.name, customer_path(customer) %></td>
         <td><%= customer.bdate %></td>
         <% customer.address_details.each do |addres| %>
@@ -40,7 +40,7 @@
         <%end%>
         <td><%= customer.contactno %></td>
         <td><%= customer.email %></td>
-        <td><%=l customer.created_at %></td>
+        <%#=l customer.created_at %>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_customer_path(customer), :class => 'btn btn-default btn-xs' %>

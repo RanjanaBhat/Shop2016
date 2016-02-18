@@ -6,7 +6,7 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 <div class="panel panel-default">
-  <div class="panel-heading custom_class" style="background-color:lightblue">Product Details</div>
+  <div class="panel-heading custom_class" style="background-color:lightblue"><%= @product.name %> Details</div>
   <div class="panel-body">
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:SKU) %>:</strong></dt>

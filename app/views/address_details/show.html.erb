@@ -6,7 +6,7 @@
   <h1>Address</h1>
 </div>
 <div class="panel panel-default">
-  <div class="panel-heading custom_class" style="background-color:lightblue">Address Details</div>
+  <div class="panel-heading custom_class" style="background-color:lightblue">Address Details of <%= @address_detail.customer.name %></div>
   <div class="panel-body">
 
 <dl class="dl-horizontal">
@@ -22,8 +22,6 @@
   <dd><%= @address_detail.postcode %></dd>
   <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
   <dd><%= @address_detail.country %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:customer_id) %>:</strong></dt>
-  <dd><%= @address_detail.customer_id %></dd>
 </dl>
 </div>
 </div>

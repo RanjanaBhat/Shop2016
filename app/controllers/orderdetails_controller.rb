@@ -1,23 +1,19 @@
 class OrderdetailsController < ApplicationController
   before_action :set_orderdetail, only: [:show, :edit, :update, :destroy]
-  #autocomplete :orderdetail
+  
   # GET /orderdetails
   # GET /orderdetails.json
   def index
     @orderdetails = Orderdetail.all
     @products = Product.all
-
-    #@products = Product.search(params[:search])
+    #@line_items = LineItem.all
     @orderdetails = Orderdetail.paginate(:page => params[:page], :per_page => 5) 
-    #@address_detail = Address_detail.all
   end
-  autocomplete :product, :name, full: true
+
   # GET /orderdetails/1
   # GET /orderdetails/1.json
   def show
-     @products = Product.all
-
-     
+     @products = Product.all   
   end
 
   # GET /orderdetails/new
@@ -25,7 +21,6 @@ class OrderdetailsController < ApplicationController
     @orderdetail = Orderdetail.new
     @products = Product.all
     @customers = Customer.all
-    #@orderdetail.products.build
     @orderdetail.build_address_detail
     @orderdetail.build_customer
     @orderdetail.line_items.build
@@ -41,6 +36,7 @@ class OrderdetailsController < ApplicationController
   def create
     @orderdetail = Orderdetail.new(orderdetail_params)
     @products = Product.all
+    @customers = Customer.all
 
     respond_to do |format|
       if @orderdetail.save
@@ -87,6 +83,6 @@ class OrderdetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orderdetail_params
-      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name,address_detail_attributes: [:id,:line1,:line2,:city,:postcode,:state,:country],line_items_attributes: [:name,:id,:product_id,:SKU,:description,:price,:quantity],customer_attributes: [:id,:name,:bdate,:contactno,:email])
+      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name,address_detail_attributes: [:customer_id,:id,:line1,:line2,:city,:postcode,:state,:country],line_items_attributes: [:name,:id,:product_id,:SKU,:description,:price,:quantity],customer_attributes: [:id,:name,:bdate,:contactno,:email])
     end
 end

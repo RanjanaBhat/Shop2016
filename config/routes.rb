@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :customers
+  resources :customers do
+    collection do
+      get 'customer_show'
+    end
+  end
   resources :orderdetails
   resources :line_items
   resources :products do    
@@ -14,9 +18,7 @@ Rails.application.routes.draw do
   resources :dashboard
 
   root to: 'home#index'
-  resources :orderdetails do
-  get :autocomplete_product_name, on: :collection
-end
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -18,8 +18,8 @@ class ProductsController < ApplicationController
       format.html  #index.html.erb
       format.json { render json: @product }
     end
-
    end
+   
   # GET /products/1
   # GET /products/1.json
   def show

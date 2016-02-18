@@ -8,6 +8,15 @@ class CustomersController < ApplicationController
     @customers = Customer.paginate(:page => params[:page], :per_page => 5) 
   end
 
+  
+  def customer_show
+    @customer = Customer.find_by_email(params[:email])
+    respond_to do |format|
+      format.html  #index.html.erb
+      format.json { render json: @customer }
+    end
+   end
+
   # GET /customers/1
   # GET /customers/1.json
   def show

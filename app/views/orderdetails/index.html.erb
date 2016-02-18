@@ -3,7 +3,7 @@
 <% will_paginate @orderdetails %>
 <br/><br/><br/><br/><br/><br/>
 <%= link_to new_orderdetail_path, :title => 'New Order', :rel => 'tooltip', class: "btn btn-primary" do %>
-    <span class="glyphicon glyphicon-new-window"></span>New
+    <span class="glyphicon glyphicon-new-window"></span>&nbsp;New Order
 <% end %>
 <%- model_class = Orderdetail -%>
 <div class="page-header">
@@ -13,6 +13,11 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <%# for line_item in @orderdetails.line_items do %> 
+        <%#= line_item.price %><br/>
+      <%# end %>
+      <%# puts "#{@orderdetail.total}"%>
+      <%#= @orderdetail.total %>
       <th><%= model_class.human_attribute_name(:product) %></th>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:cname) %></th>

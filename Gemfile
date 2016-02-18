@@ -23,6 +23,7 @@ gem 'will_paginate-bootstrap'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 gem 'rails4-autocomplete'
+gem "nested_form", :git => 'git://github.com/ryanb/nested_form.git'
 
 # jQuery UI dependency.
 gem 'jquery-ui-rails'

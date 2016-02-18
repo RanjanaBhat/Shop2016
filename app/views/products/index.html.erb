@@ -2,9 +2,9 @@
 <html lang='en'>
 <% will_paginate @products %>
 <br/><br/><br/><br/><br/><br/>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_product_path,
-            :class => 'btn btn-primary' %>
+<%= link_to new_product_path, :title => 'New Product', :rel => 'tooltip', class: "btn btn-primary" do %>
+    <span class="glyphicon glyphicon-new-window"></span>&nbsp;New Product
+<% end %>
 <%- model_class = Product -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -34,7 +34,7 @@
       <tr>
         <td><%= link_to product.id, product_path(product) %></td>
         <td><%= product.SKU %></td>
-        <td><%= product.name %></td>
+        <td><%= link_to product.name, product_path(product) %></td>
         <td><%= product.quantity %></td>
         <td><%= product.weight %></td>
         <td><%= product.height %></td>
