@@ -7,7 +7,8 @@ gem 'rails', '4.2.5.1'
 gem 'mysql2', '~> 0.3.10'
 # New Gem
 gem 'devise'
-#gem 'country_select'
+gem 'countries'
+gem 'country_select', require: false
 
 
 

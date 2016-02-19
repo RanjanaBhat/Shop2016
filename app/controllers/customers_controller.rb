@@ -11,10 +11,25 @@ class CustomersController < ApplicationController
   
   def customer_show
     @customer = Customer.find_by_email(params[:email])
+    #@address_details = AddressDetail.all
     respond_to do |format|
       format.html  #index.html.erb
-      format.json { render json: @customer }
+      format.json { render :json => @customer } #.to_json(:include => [:address_details])}
     end
+    #respond_to do |format|
+      #format.html  #index.html.erb
+      #format.json { render json: @customer }
+    #end
+
+     def address_show
+      @customer = Customer.find_by_email(params[:email])
+      @address = @customer.address_details
+
+       respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @address }
+    end  
+     end
    end
 
   # GET /customers/1

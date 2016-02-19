@@ -10,27 +10,18 @@
             <div class="panel-body">
               <!--Customer Form-->
               <%= f.fields_for :customer do |c| %>
-              <%#= f.hidden_field :customer_id, :value => @customer.id %>
-              <%#= c.hidden_field :customer_id, id: cid %>
-
-
-
-
-              <%#= @customer.id %>
                 <div class="col-md-4">
-                  <%#= c.label :Select_Email, :class => 'control-label col-lg-2' %>
                   <%= c.select :email, options_for_select(@customers.collect{ |a| [a.email, a.email] }),{prompt: "Select Email"},{ id: "abc"}%>
                 </div>
+
                 <script>
                 $("#abc").change(function(){
-                //console.log($('#input1').text('#xyz option:selected').value);
                 var  x = document.getElementById("abc").value;
                 console.log(x)
-                //$("#2").val(x)
+                //Get Customer
                 $.ajax({
                 type: 'GET',
                 url:  "/customers/customer_show",
-                //url: "/address_details/address_show",
                 data: {email: escape(x)},
                 dataType: 'json',
                 success: function(r){
@@ -40,22 +31,35 @@
                 $("#bdate").val(r['bdate']);
                 $("#contactno").val(r['contactno']);
                 $("#email").val(r['email']);
-                //$("#street").val(r['street']);
-                //$("#area").val(r['area']);
-                //$("#city").val(r['city']);
-                //$("#state").val(r['state']);
-                //$("#country").val(r['country']);
-                //$("#postcode").val(r['postcode']);
-                //$("#cid").val(r['id']);
+                }
+                });
+
+                //Get Customer's Address
+                $.ajax({
+                type: 'GET',
+                url:  "/customers/address_show",
+                data: {email: escape(x)},
+                dataType: 'json',
+                success: function(r){
+                v = r['variant'];
+                console.log(v)
+                console.log(r.length)
+                console.log(r[0]['line1'])
+                console.log(r[1]['line2'])
+                for (var i = 0; i < r.length; i++)
+                {
+                  console.log(r[i]['line1'])
+                  $("#street").val(r[i]['line1']);
+                  $("#area").val(r[i]['line2']);
+                  $("#city").val(r[i]['city']);
+                  $("#state").val(r[i]['state']);
+                  $("#country").val(r[i]['country']);
+                  $("#postcode").val(r[i]['postcode']);
+                }
                 }
                 });
                 });
                 </script>
-                
-
-
-
-
 
                 <div class="col-md-12 col-md-6">
                 <div class="col-md-2">
@@ -74,8 +78,37 @@
                   <%= c.label :email, :class => 'control-label col-lg-2' %>
                   <%= c.text_field :email, id: 'email', :class => 'form-control', :required => true %>
                 </div>
+              </div>
+
+              <div class="col-md-12 col-md-6">
+                <%= c.fields_for :address_detail do |addres| %>
+                <div class="col-md-2">
+                  <%= addres.label :street, :class => 'control-label col-lg-2' %>
+                  <%= addres.text_field :line1, id: 'street', :class => 'form-control', :required => true %>
                 </div>
-                <%# puts "#{c_id}"%>
+                <div class="col-md-2">
+                  <%= addres.label :area, :class => 'control-label col-lg-2' %>
+                  <%= addres.text_field :line2, id: 'area', :class => 'form-control', :required => true %>
+                </div>
+                <div class="col-md-2">
+                  <%= addres.label :city, :class => 'control-label col-lg-2' %>
+                  <%= addres.text_field :city, id: 'city', :class => 'form-control', :required => true%>
+                </div>
+                <div class="col-md-2">
+                  <%= addres.label :state, :class => 'control-label col-lg-2' %>
+                  <%= addres.text_field :state, id: 'state', :class => 'form-control', :required => true %>
+                </div>
+                <div class="col-md-2">
+                  <%= addres.label :postcode, :class => 'control-label col-lg-2' %>
+                  <%= addres.text_field :postcode, id: 'postcode', :class => 'form-control', :required => true%>
+                </div>
+                <div class="col-md-2">
+                  <%= addres.label :country, :class => 'control-label col-lg-2' %>
+                  <%= addres.text_field :country, id: 'country', :class => 'form-control', :required => true %>
+                </div>
+
+                </div>
+                <% end %>
               <% end %>
             </div>
 
@@ -85,10 +118,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Address Details</div>
             <div class="panel-body">
-
               <%= f.fields_for :address_detail do |addres| %>
-              <%#= addres.hidden_field :customer_id, :value => @customer.id %>
-              <%# puts "#{customer.id}"%>
                 <div class="col-md-4">
                   <%= addres.label :Street, :class => 'control-label col-md-2' %>
                   <%= addres.text_field :line1, :class => 'form-control' %>
@@ -120,10 +150,10 @@
                   <span class="help-block with-errors"></span>
                 </div>
               <%end%>
-              <%# end %>
             </div>
 
         </div>
+
         <!--
         <script>
         $("#input").keyup(function(){
@@ -144,6 +174,7 @@
         });
         });
         </script> -->
+
         <div class="panel panel-default">
           <div class="panel-heading">Order Details</div>
             <div class="panel-body">
@@ -230,12 +261,12 @@
                   <div class="col-md-4">
                     <%= p.select :name, options_for_select(@products.collect{ |a| [a.name, a.name] }),{prompt: "Select Product"},{ id: "xyz"}%>
                   </div>
+
                   <script>
                   $("#xyz").change(function(){
                   //console.log($('#input1').text('#xyz option:selected').value);
                   var  x = document.getElementById("xyz").value;
                   console.log(x)
-                  //$("#2").val(x)
                   $.ajax({
                   type: 'GET',
                   url:  "/products/product_show",
@@ -254,6 +285,7 @@
                   });
                   });
                   </script>
+
                   <div class="col-md-12 col-md-6">
                     <div class="col-md-2">
                       <%= p.label :name, :class => 'control-label col-lg-2' %>
@@ -276,10 +308,6 @@
                     </div>
                     <div class="col-md-4 ">
                       <%= p.text_field :quantity, :class => 'control-label col-lg-4', :required => true %>
-                    </div>
-                    <div class="col-md-2">
-                      <%#= p.label :price, :class => 'control-label col-lg-2' %> 
-                      <%#= :quantity * :price %>
                     </div>
                   </div> 
                   
