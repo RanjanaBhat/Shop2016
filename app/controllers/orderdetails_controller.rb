@@ -4,10 +4,9 @@ class OrderdetailsController < ApplicationController
   # GET /orderdetails
   # GET /orderdetails.json
   def index
-    @orderdetails = Orderdetail.all
-    @products = Product.all
-    #@line_items = LineItem.all
-    @orderdetails = Orderdetail.paginate(:page => params[:page], :per_page => 5) 
+    @orderdetails = Orderdetail.order(:id)
+    @products = Product.order(:id)
+    @orderdetails = Orderdetail.paginate(:page => params[:page], :per_page => 10) 
   end
 
   # GET /orderdetails/1
@@ -35,8 +34,8 @@ class OrderdetailsController < ApplicationController
   # POST /orderdetails.json
   def create
     @orderdetail = Orderdetail.new(orderdetail_params)
-    @products = Product.all
-    @customers = Customer.all
+    @products = Product.order(:id)
+    @customers = Customer.order(:id)
 
     respond_to do |format|
       if @orderdetail.save
@@ -78,11 +77,17 @@ class OrderdetailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_orderdetail
-      @orderdetail = Orderdetail.find_by_permalink(params[:id])
+      @orderdetail = Orderdetail.where(:permalink =>params[:id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orderdetail_params
-      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, :carrier, :order_currency, :order_value, :payment_collection, :special_instruction,:name,address_detail_attributes: [:customer_id,:id,:line1,:line2,:city,:postcode,:state,:country],line_items_attributes: [:name,:id,:product_id,:SKU,:description,:price,:quantity],customer_attributes: [:id,:name,:bdate,:contactno,:email])
+      params.require(:orderdetail).permit(:pname,:SKU,:invoice, :order_no, 
+      :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, 
+      :carrier, :order_currency, :order_value, :payment_collection, 
+      :special_instruction,:name,
+      address_detail_attributes: [:customer_id,:id,:line1,:line2,:city,:postcode,:state,:country],
+      line_items_attributes: [:name,:id,:product_id,:SKU,:description,:price,:quantity],
+      customer_attributes: [:id,:name,:bdate,:contactno,:email])
     end
 end
