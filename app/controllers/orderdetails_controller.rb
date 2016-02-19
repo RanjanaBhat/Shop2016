@@ -22,7 +22,7 @@ class OrderdetailsController < ApplicationController
     @customers = Customer.all
     @orderdetail.build_address_detail
     @orderdetail.build_customer
-    @orderdetail.line_items.build
+    #@orderdetail.line_items.build
   end
 
   # GET /orderdetails/1/edit
@@ -39,6 +39,7 @@ class OrderdetailsController < ApplicationController
 
     respond_to do |format|
       if @orderdetail.save
+        @orderdetail.address_detail.update_attributes(:customer_id => @orderdetail.customer_id)
         format.html { redirect_to @orderdetail, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @orderdetail }
       else
@@ -86,8 +87,9 @@ class OrderdetailsController < ApplicationController
       :is_express_delivery, :is_customer_pickup, :delivery_date, :delivery_slot, 
       :carrier, :order_currency, :order_value, :payment_collection, 
       :special_instruction,:name,
-      address_detail_attributes: [:customer_id,:id,:line1,:line2,:city,:postcode,:state,:country],
+
       line_items_attributes: [:name,:id,:product_id,:SKU,:description,:price,:quantity],
+      address_detail_attributes: [:id,:line1,:line2,:city,:postcode,:state,:country],
       customer_attributes: [:id,:name,:bdate,:contactno,:email])
     end
 end

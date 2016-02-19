@@ -1,0 +1,54 @@
+<%#= p.hidden_field :product_id, id: 5 %>
+<div class="col-md-4">
+<%= f.select :name, options_for_select(@products.collect{ |a| [a.name, a.name] }),{prompt: "Select Product"},{ id: "xyz"}%>
+                  </div>
+
+<script>
+$("#xyz").change(function(){
+//console.log($('#input1').text('#xyz option:selected').value);
+var  x = document.getElementById("xyz").value;
+console.log(x)
+$.ajax({
+type: 'GET',
+url:  "/products/product_show",
+data: {name: x},
+dataType: 'json',
+success: function(r){
+v = r['variant'];
+console.log(v)
+$("#1").val(r['name']);
+$("#2").val(r['SKU']);
+$("#3").val(r['company']);
+$("#4").val(r['retail_price']);
+$("#5").val(r['id']);
+var price = $("#quantity").data("price");
+}
+});
+});
+</script>
+
+<div class="col-md-12 col-md-6">
+  <div class="col-md-2">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <%= f.text_field :name, id: 1, :class => 'form-control', :required => true %>
+  </div>
+  <div class="col-md-2">
+    <%= f.label :SKU, :class => 'control-label col-lg-2' %>
+    <%= f.text_field :SKU, id: 2, :class => 'form-control', :required => true %>
+  </div>
+  <div class="col-md-2">
+    <%= f.label :Description, :class => 'control-label col-lg-2' %>
+    <%= f.text_field :description, id: 3, :class => 'form-control', :required => true %>
+  </div>
+  <div class="col-md-2">
+    <%= f.label :price, :class => 'control-label col-lg-2' %> 
+    <%= f.text_field :price, id: 4, :class => 'control-label ', :required => true %>
+  </div>
+  <div class="col-md-4">
+    <%= f.label :quantity, :class => 'control-label col-lg-4' %>
+  </div>
+  <div class="col-md-4 ">
+    <%= f.text_field :quantity, :class => 'control-label col-lg-4', :required => true %>
+  </div>
+</div> 
+                  

@@ -80,41 +80,43 @@
                 </div>
               </div>
 
+              <!--
               <div class="col-md-12 col-md-6">
-                <%= c.fields_for :address_detail do |addres| %>
+                <%#= c.fields_for :address_detail do |addres| %>
                 <div class="col-md-2">
-                  <%= addres.label :street, :class => 'control-label col-lg-2' %>
-                  <%= addres.text_field :line1, id: 'street', :class => 'form-control', :required => true %>
+                  <%#= addres.label :street, :class => 'control-label col-lg-2' %>
+                  <%#= addres.text_field :line1, id: 'street', :class => 'form-control' %>
                 </div>
                 <div class="col-md-2">
-                  <%= addres.label :area, :class => 'control-label col-lg-2' %>
-                  <%= addres.text_field :line2, id: 'area', :class => 'form-control', :required => true %>
+                  <%#= addres.label :area, :class => 'control-label col-lg-2' %>
+                  <%#= addres.text_field :line2, id: 'area', :class => 'form-control' %>
                 </div>
                 <div class="col-md-2">
-                  <%= addres.label :city, :class => 'control-label col-lg-2' %>
-                  <%= addres.text_field :city, id: 'city', :class => 'form-control', :required => true%>
+                  <%#= addres.label :city, :class => 'control-label col-lg-2' %>
+                  <%#= addres.text_field :city, id: 'city', :class => 'form-control'%>
                 </div>
                 <div class="col-md-2">
-                  <%= addres.label :state, :class => 'control-label col-lg-2' %>
-                  <%= addres.text_field :state, id: 'state', :class => 'form-control', :required => true %>
+                  <%#= addres.label :state, :class => 'control-label col-lg-2' %>
+                  <%#= addres.text_field :state, id: 'state', :class => 'form-control' %>
                 </div>
                 <div class="col-md-2">
-                  <%= addres.label :postcode, :class => 'control-label col-lg-2' %>
-                  <%= addres.text_field :postcode, id: 'postcode', :class => 'form-control', :required => true%>
+                  <%#= addres.label :postcode, :class => 'control-label col-lg-2' %>
+                  <%#= addres.text_field :postcode, id: 'postcode', :class => 'form-control'%>
                 </div>
                 <div class="col-md-2">
-                  <%= addres.label :country, :class => 'control-label col-lg-2' %>
-                  <%= addres.text_field :country, id: 'country', :class => 'form-control', :required => true %>
+                  <%#= addres.label :country, :class => 'control-label col-lg-2' %>
+                  <%#= addres.text_field :country, id: 'country', :class => 'form-control' %>
                 </div>
 
               </div>
-              <% end %>
+              <%# end %> -->
               <% end %>
             </div>
 
         </div>
 
-        <!--Address Form-->
+        
+        
         <div class="panel panel-default">
           <div class="panel-heading">Address Details</div>
             <div class="panel-body">
@@ -152,7 +154,7 @@
               <%end%>
             </div>
 
-        </div>
+        </div> 
 
         <!--Order Form-->
         <div class="panel panel-default">
@@ -237,61 +239,14 @@
           <div class="panel-heading">Product Details</div>
             <div class="panel-body">
               <%= f.fields_for :line_items do |p| %>
-                <%= p.hidden_field :product_id, id: 5 %>
-                  <div class="col-md-4">
-                    <%= p.select :name, options_for_select(@products.collect{ |a| [a.name, a.name] }),{prompt: "Select Product"},{ id: "xyz"}%>
-                  </div>
 
-                  <script>
-                  $("#xyz").change(function(){
-                  //console.log($('#input1').text('#xyz option:selected').value);
-                  var  x = document.getElementById("xyz").value;
-                  console.log(x)
-                  $.ajax({
-                  type: 'GET',
-                  url:  "/products/product_show",
-                  data: {name: x},
-                  dataType: 'json',
-                  success: function(r){
-                  v = r['variant'];
-                  console.log(v)
-                  $("#1").val(r['name']);
-                  $("#2").val(r['SKU']);
-                  $("#3").val(r['company']);
-                  $("#4").val(r['retail_price']);
-                  $("#5").val(r['id']);
-                  var price = $("#quantity").data("price");
-                  }
-                  });
-                  });
-                  </script>
-
-                  <div class="col-md-12 col-md-6">
-                    <div class="col-md-2">
-                      <%= p.label :name, :class => 'control-label col-lg-2' %>
-                      <%= p.text_field :name, id: 1, :class => 'form-control', :required => true %>
-                    </div>
-                    <div class="col-md-2">
-                      <%= p.label :SKU, :class => 'control-label col-lg-2' %>
-                      <%= p.text_field :SKU, id: 2, :class => 'form-control', :required => true %>
-                    </div>
-                    <div class="col-md-2">
-                      <%= p.label :Description, :class => 'control-label col-lg-2' %>
-                      <%= p.text_field :description, id: 3, :class => 'form-control', :required => true %>
-                    </div>
-                    <div class="col-md-2">
-                      <%= p.label :price, :class => 'control-label col-lg-2' %> 
-                      <%= p.text_field :price, id: 4, :class => 'control-label ', :required => true %>
-                    </div>
-                    <div class="col-md-4">
-                      <%= p.label :quantity, :class => 'control-label col-lg-4' %>
-                    </div>
-                    <div class="col-md-4 ">
-                      <%= p.text_field :quantity, :class => 'control-label col-lg-4', :required => true %>
-                    </div>
-                  </div> 
-                  
+                  <!--Line_Item Form-->
+                    <%= render 'line_item_fields', :f => p %>
               <% end %> 
+
+
+                  <%= link_to_add_fields 'Add Line_item', f,:line_items %><br>
+
             </div>
             
         </div>
