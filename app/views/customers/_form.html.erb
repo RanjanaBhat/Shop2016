@@ -58,16 +58,7 @@
                 <span class="help-block with-errors"></span>
               </div>
               
-              <%#= simple_form_for :notes, :html => { :class => 'form-horizontal' } do |note| %>
                   <%#= render 'address_details_fields', :f => addres %>
-              <%# end %>
-    
-              <%#= link_to render(:partial => "address"), :f => addres do %>
-              <%# end %>
-                <%#= link_to 'Add Address', select_partial_path(option: "address") %>
-              <%#= link_to render(:partial => 'customers/address'), Add_Address %>
-              <%#= link_to 'Add Address',render 'address', :f => addres %>
-              <%#= render 'address', :f => addres %>
             <%end%>
             <%#= link_to_add 'Add address',:address_details, :class => "btn btn-success", :style => "color:#fff" %><br>
             
@@ -81,17 +72,9 @@
               <%= f.text_field :email, :class => 'form-control', :required => true %>
               <span class="help-block with-errors"></span>
             </div>
-            <script>
-            //function add_fields(link, association, content) {
-              //var new_id = new Date().getTime();
-              //var regexp = new RegExp("new_" + association, "g")
-              //$(link).parent().before(content.replace(regexp, new_id));
-            //}
-            </script>
-            <%#= link_to_add_fields "Add Address", f, :address_details %>
+            
             <a href="#tab1" data-toggle="tab">Add Address</a>
               <%= f.fields_for :address_details do |addres| %>
-              <%#= render 'address', :f => addres %>
                 <div class="tab-content">
                   <div class="tab-pane" id="tab1">
                     <%= render 'address', :f => addres %>

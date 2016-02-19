@@ -9,10 +9,4 @@ class HomeController < ApplicationController
 	end
 	def order_detail
 	end
-	def order
-	end
-	def customer
-	end
-	def product
-	end
 end

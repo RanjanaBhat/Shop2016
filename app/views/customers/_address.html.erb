@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang='en'>
-<!--Address Form-->
-<%#= form_for @customer, :html => { :class => "form-horizontal customer" } do |f| %>
-<%#= f.fields_for :address_details do |addres| %>
-
   <div class="col-md-4">
     <%= f.label :address1, :class => 'control-label col-md-2'%>
     <%= f.text_field :line1, :class => 'form-control' %>
@@ -34,6 +30,4 @@
     <%= f.text_field :postcode, :class => 'form-control'%>
     <span class="help-block with-errors"></span>
   </div>
-<%#end%>
-<%#end%>
 </html>

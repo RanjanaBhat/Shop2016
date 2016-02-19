@@ -10,7 +10,6 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:product) %></th>
-      <%#= model_class.human_attribute_name(:id) %>
       <th><%= model_class.human_attribute_name(:cname) %></th>
       <th><%= model_class.human_attribute_name(:order_no) %></th>
       <th><%= model_class.human_attribute_name(:is_express_delivery) %></th>
@@ -23,7 +22,6 @@
       <th><%= model_class.human_attribute_name(:special_instruction) %></th>
       <th><%= model_class.human_attribute_name(:delivery_slot) %></th>
       <th><%= model_class.human_attribute_name(:invoice) %></th>
-      <!--<th><%= model_class.human_attribute_name(:created_at) %></th>-->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -31,7 +29,6 @@
     <% @orderdetails.each do |orderdetail| %>
       <tr>
         <td><%= orderdetail.pname %></td>
-        <%#= link_to orderdetail.id, orderdetail_path(orderdetail) %>
         <td><%= orderdetail.name %></td>
         <td><%= link_to orderdetail.order_no, orderdetail_path(orderdetail) %></td>
         <td><%= orderdetail.is_express_delivery %></td>
@@ -44,7 +41,6 @@
         <td><%= orderdetail.special_instruction %></td>
         <td><%= orderdetail.delivery_slot %></td>
         <td><%= image_tag(orderdetail.invoice, :size => "100x100", :alt => "Picture") %></td>
-        <!--<td><%=l orderdetail.created_at %></td>-->
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_orderdetail_path(orderdetail), :class => 'btn btn-default btn-xs' %>

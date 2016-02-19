@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   resources :customers do
-    #resources :address_details do
       collection do
         get 'customer_show'
         get 'address_show'
       end
-    #end
   end
   #get 'customers/customer_show', :to => "customers#customer_show", :as => 'customer_show'
 

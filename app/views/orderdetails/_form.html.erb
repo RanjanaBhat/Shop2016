@@ -107,8 +107,8 @@
                   <%= addres.text_field :country, id: 'country', :class => 'form-control', :required => true %>
                 </div>
 
-                </div>
-                <% end %>
+              </div>
+              <% end %>
               <% end %>
             </div>
 
@@ -154,27 +154,7 @@
 
         </div>
 
-        <!--
-        <script>
-        $("#input").keyup(function(){
-        var  x = document.getElementById("input").value;
-        $.ajax({
-        type: 'GET',
-        url:  "/customers/" + x,
-        data: {id: x},
-        dataType: 'json',
-        success: function(r){
-        v = r['variant'];
-        console.log(v)
-        $("#name").val(r['name']);
-        $("#bdate").val(r['bdate'])
-        $("#contactno").val(r['contactno']);
-        $("#email").val(r['email']);
-        }
-        });
-        });
-        </script> -->
-
+        <!--Order Form-->
         <div class="panel panel-default">
           <div class="panel-heading">Order Details</div>
             <div class="panel-body">
@@ -324,13 +304,6 @@
   </div>
   <div class=" col-md-2">
     <%= link_to 'Cancel', orderdetails_path, class: "btn btn-danger btn-block btn-lg" %>
-  </div>
-</div>
-<div class="form-group">
-  <div class="col-md-offset-2 col-md-2">
-    <%#= f.submit nil, :class => 'btn btn-primary btn-block btn-lg' %><br/>
-    <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                orderdetails_path, :class => 'btn btn-default' %>
   </div>
 </div>
 <% end %>
